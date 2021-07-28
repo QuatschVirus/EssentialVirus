@@ -1,0 +1,54 @@
+name: EssentialVirus
+version: ${project.version}
+main: de.quatschvirus.essentialvirus.Main
+api-version: 1.17
+authors: [ QuatschVirus ]
+description: Mein erstes selbstgeschriebenes Plugin, das ein paar tolle Funktionen enthält
+
+commands:
+  #date:
+  #  description: Zeigt die aktuelle Zeit an
+  backpack:
+    description: Öffnet deinen Rucksack
+    aliases:
+      - bp
+  timer:
+    description: Ein Timer zum Messen der Spielzeit
+    permission: essentialvirus.commands.timer
+    permission-message: Du hast nicht die benötigten Berechtigungen, um den Timer zu bedienen!
+  chatcolor:
+    description: Ändert die Farbe deines Namens im Chat
+    #permission: essentialvirus.commands.chatcolor
+    permission-message: Du hast nicht die benötigten Berechtigungen, um deine Chatfarbe zu ändern!
+    aliases:
+      - cc
+  nick:
+    description: Nick-Befehl. Eigentlich selbsterklärend...
+    #permission: essentialvirus.commands.nick
+    permission-message: Du hast nicht die benötigten Berechtigungen, um den nick-Befehl zu benutzen!
+  announceshutdown:
+    description: Küdigt das Herunterfahren des Servers an.
+    permission: essentialvirus.commands.announceshutdown
+    permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
+  #pos:
+  #  description: Verwalten von Markern, um POsitionen wiederzufinden.
+  #  permission: essentialvirus.commands.pos
+  #  permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
+  playerteleport:
+    description: Bearbeiter teleport-Befehl für Nicht-OP's. Ein Teleport kostet den Spieler, der den Befehl ausführt, einen Smaragd
+    #permission: essentialvirus.commands.teleport
+    permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
+    aliases:
+      - ptp
+  transfer:
+    description: Übertrage die Items, die du gerade in deiner Hand hast, an einen Spieler. Kostet dich einen Smaragd
+    #permission: essentialvirus.commands.transfer
+    permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
+  balance:
+    description: Zeigt dir deinen Kontostand an
+  pay:
+    description: Überweise die Geldmenge an einen Spieler
+  deposit:
+    description: Zahle den Betrag auf dein Konto ein
+  slime:
+    description: Überprüft, ob der Chunk, in dem du dich befindest, ein Slimechunk ist
