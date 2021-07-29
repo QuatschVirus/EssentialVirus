@@ -85,6 +85,8 @@ public final class Main extends JavaPlugin {
         getCommand("slime").setExecutor(new SlimeCommand());
         getCommand("slime").setTabCompleter(new NoTabComplete());
         getCommand("pay").setExecutor(new PayCommand());
+        getCommand("info").setExecutor(new InfoCommand());
+        getCommand("info").setTabCompleter(new NoTabComplete());
         //getCommand("pos").setExecutor(new PosCommand());
     }
 
