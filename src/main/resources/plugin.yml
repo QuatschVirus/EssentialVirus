@@ -52,5 +52,3 @@ commands:
     description: Zahle den Betrag auf dein Konto ein
   slime:
     description: Überprüft, ob der Chunk, in dem du dich befindest, ein Slimechunk ist
-  info:
-    description: Gibt rohe Infodaten für API's zurück
