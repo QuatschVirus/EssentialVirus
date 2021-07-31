@@ -40,7 +40,7 @@ public class SlimeCommand implements CommandExecutor {
                                 ((long) zPosition * zPosition) * 0x4307a7L +
                                 ((long) zPosition * 0x5f24f) ^ 0x3ad8025f);
                         if (random.nextInt(10) == 0) {
-                            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + "Der Chunk " + xPosition + zPosition + " ist ein Slimechunk.");
+                            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + "Der Chunk " + xPosition + " " + zPosition + " ist ein Slimechunk.");
                             return false;
                         }
                         xPosition = player.getWorld().getChunkAt(player.getLocation()).getX() - x;
@@ -51,7 +51,7 @@ public class SlimeCommand implements CommandExecutor {
                                 ((long) zPosition * zPosition) * 0x4307a7L +
                                 ((long) zPosition * 0x5f24f) ^ 0x3ad8025f);
                         if (random.nextInt(10) == 0) {
-                            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + "Der Chunk " + xPosition + zPosition + " ist ein Slimechunk.");
+                            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + "Der Chunk " + xPosition + " " + zPosition + " ist ein Slimechunk.");
                             return false;
                         }
                     }
