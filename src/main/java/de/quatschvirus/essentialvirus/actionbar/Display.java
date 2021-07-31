@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public abstract class Display {
-    private int index = 0;
+    private final int index;
 
     public abstract String display();
 

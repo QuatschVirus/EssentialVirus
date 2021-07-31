@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class Config {
 
     private static File file;
@@ -42,7 +43,7 @@ public class Config {
 
     public static Object get(String path) {
         if(!contains(path)) {
-            return null;
+            return "";
         }else {
             return config.get(path);
         }

@@ -44,10 +44,6 @@ public class ActionBar {
 
     }
 
-    public int latestIndex() {
-        return this.elements.size();
-    }
-
     public Player getPlayer() {
         return player;
     }

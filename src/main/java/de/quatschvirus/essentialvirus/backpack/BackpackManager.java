@@ -21,15 +21,11 @@ public class BackpackManager {
             return map.get(uuid);
         }
 
-        Backpack backpack = new Backpack(uuid);
+        Backpack backpack = new Backpack();
 
         map.put(uuid, backpack);
 
         return backpack;
-    }
-
-    public void setBackpack(UUID uuid, Backpack backpack) {
-        map.put(uuid, backpack);
     }
 
     private void load() {
@@ -43,7 +39,7 @@ public class BackpackManager {
             String base64 = (String) Config.get("backpack.inventory." + s);
 
             try {
-                map.put(uuid, new Backpack(uuid, base64));
+                map.put(uuid, new Backpack(base64));
             } catch (IOException e) {
                 e.printStackTrace();
             }

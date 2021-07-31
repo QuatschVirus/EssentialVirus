@@ -38,8 +38,8 @@ public class Base64 {
             dataOutput.writeInt(items.length);
 
             // Save every element in the list
-            for (int i = 0; i < items.length; i++) {
-                dataOutput.writeObject(items[i]);
+            for (ItemStack item : items) {
+                dataOutput.writeObject(item);
             }
 
             // Serialize that array

@@ -108,9 +108,9 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return new ArrayList<String>(Arrays.asList("resume", "pause", "time", "reset", "save"));
+            return new ArrayList<>(Arrays.asList("resume", "pause", "time", "reset", "save"));
         } else {
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
     }
 }

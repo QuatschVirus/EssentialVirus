@@ -27,7 +27,6 @@ public class JoinListener implements Listener {
         }
 
         Main.getInstance().getActionBarManager().addActionBar(player);
-        //new TestScoreboard(player);
     }
 
 }

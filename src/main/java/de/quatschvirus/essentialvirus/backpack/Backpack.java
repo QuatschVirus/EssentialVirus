@@ -11,11 +11,9 @@ import java.util.UUID;
 
 public class Backpack {
 
-    private final UUID uuid;
     private final Inventory inventory;
 
-    public Backpack(UUID uuid) {
-        this.uuid = uuid;
+    public Backpack() {
         if(!Config.contains("backpack.default.slots")) {
             try {
                 Config.set("backpack.default.slots", 27);
@@ -26,8 +24,7 @@ public class Backpack {
         this.inventory = Bukkit.createInventory(null, (int) Config.get("backpack.default.slots"), ChatColor.DARK_GREEN + "Rucksack");
     }
 
-    public Backpack(UUID uuid, String data) throws IOException {
-        this.uuid = uuid;
+    public Backpack(String data) throws IOException {
         if(!Config.contains("backpack.default.slots")) {
             try {
                 Config.set("backpack.default.slots", 27);
@@ -37,10 +34,6 @@ public class Backpack {
         }
         this.inventory = Bukkit.createInventory(null, (int) Config.get("backpack.default.slots"), ChatColor.DARK_GREEN + "Rucksack");
         this.inventory.setContents(Base64.itemStackArrayFromBase64(data));
-    }
-
-    public UUID getUuid() {
-        return uuid;
     }
 
     public Inventory getInventory() {

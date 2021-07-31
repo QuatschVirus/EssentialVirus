@@ -6,8 +6,6 @@ authors: [ QuatschVirus ]
 description: Mein erstes selbstgeschriebenes Plugin, das ein paar tolle Funktionen enthält
 
 commands:
-  #date:
-  #  description: Zeigt die aktuelle Zeit an
   backpack:
     description: Öffnet deinen Rucksack
     aliases:

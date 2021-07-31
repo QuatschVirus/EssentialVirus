@@ -79,7 +79,7 @@ public class Timer {
             if (!isRunning()) {
                 Main.getInstance().getActionBarManager().getActionBar(player).set(0 , ChatColor.GOLD + "Der Timer ist pausiert!");
             } else {
-                Main.getInstance().getActionBarManager().getActionBar(player).set(0, ChatColor.GOLD.toString() + "Timer: " + ChatColor.BOLD + getTimeString());
+                Main.getInstance().getActionBarManager().getActionBar(player).set(0, ChatColor.GOLD + "Timer: " + ChatColor.BOLD + getTimeString());
             }
         }
     }

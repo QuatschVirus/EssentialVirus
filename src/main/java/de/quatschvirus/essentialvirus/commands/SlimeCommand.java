@@ -8,7 +8,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class SlimeCommand implements CommandExecutor {
@@ -57,11 +56,10 @@ public class SlimeCommand implements CommandExecutor {
                     }
                 }
                 player.sendMessage(Main.getPrefix() + ChatColor.RED + "Es wurde kein Chunk in deiner Umgebung gefunden");
-                return true;
             } else {
                 sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung: /slime oder /slime search");
-                return true;
             }
+            return true;
         }
         long seed = player.getWorld().getSeed();
         int xPosition = player.getWorld().getChunkAt(player.getLocation()).getX();
@@ -79,4 +77,3 @@ public class SlimeCommand implements CommandExecutor {
         return false;
     }
 }
-

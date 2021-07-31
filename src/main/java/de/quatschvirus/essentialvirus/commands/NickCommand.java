@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class NickCommand implements CommandExecutor, TabCompleter {
     @Override
@@ -52,7 +51,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                         return true;
                     }
                 }
-                if (args[0].toLowerCase().equals("reset")) {
+                if (args[0].equalsIgnoreCase("reset")) {
                     runner.setDisplayName(runner.getName());
                     runner.setPlayerListName(runner.getName());
                     runner.setCustomName(runner.getName());
@@ -84,7 +83,10 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                 }
 
                 Player target = Bukkit.getPlayer(args[0]);
-
+                if(target == null) {
+                    runner.sendMessage(Main.getPrefix() + ChatColor.RED + "Der Spieler, den du umbennen willst, existiert nicht!");
+                    return true;
+                }
                 if(!target.isOnline()) {
                     runner.sendMessage(Main.getPrefix() + ChatColor.RED + "Der Spieler, den du umbennen willst, ist nicht online!");
                     return true;

@@ -73,6 +73,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new ChatListener(), this);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void commandRegistration() {
         try {
             //getCommand("date").setExecutor(new DateCommand());

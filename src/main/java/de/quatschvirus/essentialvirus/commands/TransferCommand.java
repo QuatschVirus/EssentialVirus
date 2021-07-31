@@ -4,7 +4,6 @@ import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Money;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -41,9 +40,9 @@ public class TransferCommand implements CommandExecutor, TabCompleter {
         player.getInventory().remove(item);
         target.getInventory().addItem(item);
         String itemTypeName = item.getType().name().toLowerCase().replace('_', ' ');
-        String itemName = "";
+        StringBuilder itemName = new StringBuilder();
         for (String word : itemTypeName.split(" ")) {
-            itemName += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
+            itemName.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
         }
         sender.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hast " + args[0] + " " + item.getAmount() + " " + itemName + "gegeben");
         target.sendMessage(Main.getPrefix() + ChatColor.GOLD + player.getDisplayName() + " hat dir " + item.getAmount() + " " + itemName + "gegeben");
@@ -53,7 +52,7 @@ public class TransferCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length > 1) {
-            return new ArrayList<String>();
+            return new ArrayList<>();
         } else {
             return null;
         }
