@@ -30,9 +30,9 @@ public class SlimeCommand implements CommandExecutor {
                 ((long) zPosition * zPosition) * 0x4307a7L +
                 ((long) zPosition * 0x5f24f) ^ 0x3ad8025f);
         if (random.nextInt(10) == 0) {
-            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + " This " + ChatColor.UNDERLINE + "is" + ChatColor.RESET + ChatColor.AQUA + " a slime chunk.");
+            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + "Dies " + ChatColor.UNDERLINE + "ist" + ChatColor.RESET + ChatColor.AQUA + " ein Slimechunk.");
         } else {
-            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + " This is " + ChatColor.UNDERLINE + "not" + ChatColor.RESET + ChatColor.AQUA + " a slime chunk.");
+            player.sendMessage(Main.getPrefix() + ChatColor.AQUA + " Dies ist " + ChatColor.UNDERLINE + "kein" + ChatColor.RESET + ChatColor.AQUA + " ein Slimechunk.");
         }
         return false;
     }
