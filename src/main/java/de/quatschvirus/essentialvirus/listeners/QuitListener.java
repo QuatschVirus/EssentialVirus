@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class QuitListener implements Listener {
 
     @EventHandler
-    static void onQuit(PlayerQuitEvent event) {
+    public void onQuit(PlayerQuitEvent event) {
 
         Player player = event.getPlayer();
         event.setQuitMessage(Main.getPrefix() + ChatColor.RED + player.getName() + ChatColor.YELLOW + " ist abgetaucht.");
