@@ -15,22 +15,14 @@ public class Backpack {
 
     public Backpack() {
         if(!Config.contains("backpack.default.slots")) {
-            try {
-                Config.set("backpack.default.slots", 27);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Config.set("backpack.default.slots", 27);
         }
         this.inventory = Bukkit.createInventory(null, (int) Config.get("backpack.default.slots"), ChatColor.DARK_GREEN + "Rucksack");
     }
 
     public Backpack(String data) throws IOException {
         if(!Config.contains("backpack.default.slots")) {
-            try {
-                Config.set("backpack.default.slots", 27);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Config.set("backpack.default.slots", 27);
         }
         this.inventory = Bukkit.createInventory(null, (int) Config.get("backpack.default.slots"), ChatColor.DARK_GREEN + "Rucksack");
         this.inventory.setContents(Base64.itemStackArrayFromBase64(data));

@@ -21,7 +21,7 @@ public class SleepListener implements Listener {
                 break;
             }
             case NOT_POSSIBLE_NOW: {
-                event.getPlayer().sendMessage(Main.getPrefix() + ChatColor.RED + "Du kannst dur nachts oder wärend eines Gewitters schlafen!");
+                event.getPlayer().sendMessage(Main.getPrefix() + ChatColor.RED + "Du kannst nur nachts oder wärend eines Gewitters schlafen!");
                 break;
             }
             case NOT_SAFE: {
@@ -38,8 +38,10 @@ public class SleepListener implements Listener {
     @EventHandler
     public void onWake(PlayerBedLeaveEvent event) {
         if (event.getPlayer().getWorld().getTime() >= 0 && event.getPlayer().getWorld().getTime() <= 12500 && !event.getPlayer().getWorld().isThundering()) {
-            sleeping = 0;
-            Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + "Guten Morgen!");
+            sleeping --;
+            if(sleeping == 0) {
+                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + "Guten Morgen!");
+            }
         } else {
             sleeping--;
             Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + event.getPlayer().getDisplayName() + " hat das Bett verlassen! (" + sleeping + "/" + Bukkit.getOnlinePlayers().size() + ")");

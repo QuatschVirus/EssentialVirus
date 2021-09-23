@@ -14,8 +14,14 @@ import de.quatschvirus.essentialvirus.utils.Lag;
 import de.quatschvirus.essentialvirus.utils.NoTabComplete;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
 
@@ -23,6 +29,8 @@ public final class Main extends JavaPlugin {
     private Timer timer;
     private BackpackManager backpackManager;
     private ActionBarManager actionBarManager;
+
+    private boolean indev = false;
 
     public static String getPrefix() {
         return ChatColor.DARK_GRAY + "[" + ChatColor.GOLD + "EssentialVirus" + ChatColor.DARK_GRAY + "] " + ChatColor.RESET;
@@ -39,25 +47,28 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
         timer = new Timer();
         backpackManager = new BackpackManager();
         actionBarManager = new ActionBarManager();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
+        if (Config.contains("indev.isindev")) {
+            indev = (boolean) Config.get("indev.isindev");
+        }
+
         new BalanceDisplay();
         new TimeDisplay();
         new LagDisplay();
 
-        Bukkit.getLogger().fine("Plugin enabled");
-
         listenerRegistration();
         commandRegistration();
+
+        Bukkit.getLogger().fine("Plugin enabled");
     }
 
     @Override
     public void onDisable() {
+        Config.set("indev.isindev", indev);
         timer.saveTime();
         backpackManager.save();
         Config.save();
@@ -72,6 +83,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new QuitListener(), this);
         pluginManager.registerEvents(new ChatListener(), this);
         pluginManager.registerEvents(new SleepListener(), this);
+        pluginManager.registerEvents(new DeathListener(), this);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -94,6 +106,11 @@ public final class Main extends JavaPlugin {
             getCommand("slime").setTabCompleter(new NoTabComplete());
             getCommand("pay").setExecutor(new PayCommand());
             //getCommand("pos").setExecutor(new PosCommand());
+            getCommand("api").setExecutor(new APICommand());
+            getCommand("api").setTabCompleter(new NoTabComplete());
+            getCommand("display").setExecutor(new DisplayCommand());
+            getCommand("indev").setExecutor(new IndevCommand());
+            getCommand("indev").setTabCompleter(new NoTabComplete());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -113,5 +130,24 @@ public final class Main extends JavaPlugin {
 
     public ActionBarManager getActionBarManager() {
         return actionBarManager;
+    }
+
+    public boolean isIndev() {
+        return indev;
+    }
+
+    public void setIndev(boolean indev) {
+        this.indev = indev;
+        if (!indev) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                ArrayList<String> data = new ArrayList<>(Config.getStringList("indev.last_pos." + p.getUniqueId()));
+                p.teleport(new Location(Bukkit.getWorld(data.get(0)), Double.parseDouble(data.get(1)), Double.parseDouble(data.get(2)), Double.parseDouble(data.get(3))));
+                Config.set("indev.teleported." + p.getUniqueId(), true);
+            }
+        } else {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.kickPlayer(ChatColor.RED + "Der Indev-Modus wurde aktiviert.");
+            }
+        }
     }
 }

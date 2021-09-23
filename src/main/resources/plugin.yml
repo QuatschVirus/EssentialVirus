@@ -12,7 +12,7 @@ commands:
       - bp
   timer:
     description: Ein Timer zum Messen der Spielzeit
-    permission: essentialvirus.commands.timer
+    #permission: essentialvirus.commands.timer
     permission-message: Du hast nicht die benötigten Berechtigungen, um den Timer zu bedienen!
   chatcolor:
     description: Ändert die Farbe deines Namens im Chat
@@ -29,7 +29,7 @@ commands:
     permission: essentialvirus.commands.announceshutdown
     permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
   #pos:
-  #  description: Verwalten von Markern, um POsitionen wiederzufinden.
+  #  description: Verwalten von Markern, um Positionen wiederzufinden.
   #  permission: essentialvirus.commands.pos
   #  permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
   playerteleport:
@@ -50,3 +50,9 @@ commands:
     description: Zahle den Betrag auf dein Konto ein
   slime:
     description: Überprüft, ob der Chunk, in dem du dich befindest, ein Slimechunk ist
+  api:
+    description: Eine Sammlungvon api-Befehlen. Kann nur von einem Admin ausgeführt werden.
+  display:
+    description: Zum An-/Ausschalten des Displays.
+  indev:
+    description: Zum An-/Ausschalten des Indev-Modus.

@@ -14,6 +14,7 @@ public class ActionBar {
     private final ArrayList<String> elements = new ArrayList<>();
     private final long timing;
     private final long delay;
+    private boolean visible = true;
     private final Player player;
 
 
@@ -40,12 +41,22 @@ public class ActionBar {
                 out.append(ChatColor.GOLD).append(" --- ");
             }
         }
-        this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(out.toString()));
+        if(this.visible) {
+            this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(out.toString()));
+        }
 
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     private void start() {
@@ -54,6 +65,6 @@ public class ActionBar {
             public void run() {
                 display();
             }
-        }.runTaskTimer(Main.getInstance(), delay, this.timing);
+        }.runTaskTimer(Main.getInstance(), this.delay, this.timing);
     }
 }

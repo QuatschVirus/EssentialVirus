@@ -82,11 +82,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
                 Timer timer = Main.getInstance().getTimer();
 
                 timer.setRunning(false);
-                try {
-                    Config.set("timer.time", timer.getTime());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("timer.time", timer.getTime());
                 timer.setRunning(true);
                 sender.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Die Zeit wurde gespeichert!");
 

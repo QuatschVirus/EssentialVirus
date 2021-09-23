@@ -11,18 +11,10 @@ public class Money {
     }
 
     public static void add(Player player, int amount) {
-        try {
-            Config.set("balance." + player.getUniqueId(), Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) + amount);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Config.set("balance." + player.getUniqueId(), Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) + amount);
     }
 
     public static void remove(Player player, int amount) {
-        try {
-            Config.set("balance." + player.getUniqueId(), Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) - amount);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Config.set("balance." + player.getUniqueId(), Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) - amount);
     }
 }

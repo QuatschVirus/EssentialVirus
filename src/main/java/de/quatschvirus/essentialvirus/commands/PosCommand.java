@@ -39,14 +39,10 @@ public class PosCommand implements CommandExecutor, TabCompleter {
                     player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung: /pos add <name>");
                     return true;
                 }
-                try {
-                    Config.set("pos." + player.getUniqueId() + args[1], new ArrayList<>(Arrays.asList(String.valueOf((int) player.getLocation().getX()), String.valueOf((int) player.getLocation().getY()), String.valueOf((int) player.getLocation().getZ()))));
-                    List<String> positions = Config.getStringList("pos.positions." + player.getUniqueId());
-                    positions.add(args[1]);
-                    Config.set("pos.positons." + player.getUniqueId(), positions);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("pos." + player.getUniqueId() + args[1], new ArrayList<>(Arrays.asList(String.valueOf((int) player.getLocation().getX()), String.valueOf((int) player.getLocation().getY()), String.valueOf((int) player.getLocation().getZ()))));
+                List<String> positions = Config.getStringList("pos.positions." + player.getUniqueId());
+                positions.add(args[1]);
+                Config.set("pos.positons." + player.getUniqueId(), positions);
                 player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Die Position " + args[0] + " wurde auf " + player.getLocation().getX() + " " + player.getLocation().getY() + " " + player.getLocation().getZ() + " gesetzt.");
                 break;
             }
@@ -78,14 +74,10 @@ public class PosCommand implements CommandExecutor, TabCompleter {
                     player.sendMessage(Main.getPrefix() + ChatColor.RED + "Der Marker " + args[1] + " existiert nicht.");
                     return true;
                 }
-                try {
-                    Config.set("pos." + player.getUniqueId() + args[1], null);
-                    List<String> positions = Config.getStringList("pos.positions." + player.getUniqueId());
-                    positions.remove(args[1]);
-                    Config.set("pos.positons." + player.getUniqueId(), positions);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("pos." + player.getUniqueId() + args[1], null);
+                List<String> positions = Config.getStringList("pos.positions." + player.getUniqueId());
+                positions.remove(args[1]);
+                Config.set("pos.positons." + player.getUniqueId(), positions);
                 break;
             }
 

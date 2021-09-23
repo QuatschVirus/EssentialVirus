@@ -37,8 +37,8 @@ public class Config {
         return config.contains(path);
     }
 
-    public static void set(String path, Object value) throws IOException {
-        config.set(path, value);
+    public static void set(String path, Object value) {
+            config.set(path, value);
     }
 
     public static Object get(String path) {

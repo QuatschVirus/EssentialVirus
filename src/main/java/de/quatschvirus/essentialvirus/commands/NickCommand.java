@@ -55,11 +55,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                     runner.setDisplayName(runner.getName());
                     runner.setPlayerListName(runner.getName());
                     runner.setCustomName(runner.getName());
-                    try {
-                        Config.set("nick." + runner.getUniqueId(), null);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Config.set("nick." + runner.getUniqueId(), null);
                     runner.sendMessage(Main.getPrefix() + "Dein Nickname wurde erfolgreich zurückgesetzt!");
                     break;
 
@@ -67,11 +63,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                 runner.setDisplayName(args[0]);
                 runner.setPlayerListName(args[0]);
                 runner.setCustomName(args[0]);
-                try {
-                    Config.set("nick." + runner.getUniqueId(), args[0]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("nick." + runner.getUniqueId(), args[0]);
                 runner.sendMessage(Main.getPrefix() + "Dein Nickname wurde erfolgreich auf " + ChatColor.GREEN + args[0] + ChatColor.RESET + " gesetzt!");
                 break;
             }
@@ -95,22 +87,14 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                     target.setDisplayName(target.getName());
                     target.setPlayerListName(target.getName());
                     target.setCustomName(target.getName());
-                    try {
-                        Config.set("nick." + target.getUniqueId(), null);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Config.set("nick." + target.getUniqueId(), null);
                     runner.sendMessage(Main.getPrefix() + "Der Nickname von " + args[0] + " wurde erfolgreich zurückgesetzt!");
                     break;
                 }
                 target.setDisplayName(args[1]);
                 target.setPlayerListName(args[1]);
                 target.setCustomName(args[1]);
-                try {
-                    Config.set("nick." + runner.getUniqueId(), args[1]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("nick." + runner.getUniqueId(), args[1]);
                 target.sendMessage(Main.getPrefix() + "Der Nickname von " + ChatColor.GREEN + args[0] + ChatColor.RESET + " wurde erfolgreich auf " + ChatColor.GREEN + args[1] + ChatColor.RESET + " gesetzt!");
                 break;
 

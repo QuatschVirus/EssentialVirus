@@ -21,11 +21,7 @@ public class ChatcolorCommand implements CommandExecutor, TabCompleter {
         Player player = (Player) sender;
         if(!Config.contains("chatcolor.valid")) {
             List<String> validColors = new ArrayList<>(Arrays.asList("dark_red", "red", "gold", "yellow", "dark_green", "green", "aqua", "dark_aqua", "dark_blue", "blue", "light_purple", "dark_purple", "white", "gray", "dark_gray", "black", "default"));
-            try {
-                Config.set("chatcolor.valid", validColors);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Config.set("chatcolor.valid", validColors);
         }
 
         if (args.length == 0) {
@@ -35,171 +31,103 @@ public class ChatcolorCommand implements CommandExecutor, TabCompleter {
 
         switch (args[0]) {
             case "dark_red": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_RED);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_RED);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_RED + "dunkelrot (dark_red)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "red": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.RED);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RED);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.RED + "rot (red)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "gold": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.GOLD);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GOLD);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.GOLD + "gold (gold)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "yellow": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.YELLOW);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.YELLOW);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.YELLOW + "gelb (yellow)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_green": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GREEN);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GREEN);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_GREEN + "dunkelgrün (dark_green)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "green": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.GREEN);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GREEN);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.GREEN + "grün (green)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "aqua": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.AQUA);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.AQUA);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.AQUA + "cyan (aqua)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_aqua": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_AQUA);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_AQUA);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_AQUA + "türkis (dark_aqua)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_blue": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_BLUE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_BLUE);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_BLUE + "dunkel_blau (dark_blue)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "blue": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLUE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLUE);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.BLUE + "Violet (blue)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "light_purple": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.LIGHT_PURPLE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.LIGHT_PURPLE);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.LIGHT_PURPLE + "pink (light_purple)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_purple": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_PURPLE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_PURPLE);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_PURPLE + "lila (dark_purple)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "white": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.WHITE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.WHITE);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.WHITE + "weiß (white)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "gray": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.GRAY);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GRAY);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.GRAY + "hellgrau (gray)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_gray": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GRAY);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GRAY);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_GRAY + "dunkelgrau (dark_gray)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "black": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLACK);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLACK);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.BLACK + "schwarz (black)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "default": {
-                try {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.RESET);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RESET);
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zurückgesetzt");
                 break;
             }

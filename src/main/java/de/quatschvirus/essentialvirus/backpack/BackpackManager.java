@@ -55,18 +55,8 @@ public class BackpackManager {
             uuids.add(uuid.toString());
         }
 
-        try {
-            Config.set("backpack.uuids", uuids);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Config.set("backpack.uuids", uuids);
 
-        map.forEach((uuid, backpack) -> {
-            try {
-                Config.set("backpack.inventory." + uuid.toString(), backpack.toBase64());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        map.forEach((uuid, backpack) -> Config.set("backpack.inventory." + uuid.toString(), backpack.toBase64()));
     }
 }

@@ -1,6 +1,8 @@
 package de.quatschvirus.essentialvirus.listeners;
 
+import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,16 +19,13 @@ public class ChatListener implements Listener {
         Player player = event.getPlayer();
 
         if (!Config.contains("chatcolor." + player.getUniqueId())) {
-            try {
-                if(player.isOp()) {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.GREEN.toString());
-                } else {
-                    Config.set("chatcolor." + player.getUniqueId(), ChatColor.RESET.toString());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(player.isOp()) {
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GREEN.toString());
+            } else {
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RESET.toString());
             }
         }
+
 
         if(player.isOp()) {
             event.setFormat(ChatColor.DARK_GRAY + "<" + ChatColor.GREEN + "ADMIN - %1$s" + ChatColor.DARK_GRAY + ">" + ChatColor.RESET + " %2$s");

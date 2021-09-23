@@ -40,11 +40,7 @@ public class Timer {
     }
 
     public void saveTime() {
-        try {
-            Config.set("timer.time", getTime());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Config.set("timer.time", getTime());
     }
 
     public String getTimeString() {
