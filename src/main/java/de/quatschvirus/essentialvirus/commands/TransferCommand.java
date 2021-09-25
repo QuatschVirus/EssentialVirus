@@ -18,7 +18,7 @@ public class TransferCommand extends PaidCommand {
     public void function(Player player, Command command, String label, String[] args) {
         Player target = Bukkit.getPlayer(args[0]);
         ItemStack item = player.getInventory().getItemInMainHand();
-        player.getInventory().remove(item);
+        player.getInventory().clear(player.getInventory().getHeldItemSlot());
         target.getInventory().addItem(item);
         String itemTypeName = item.getType().name().toLowerCase().replace('_', ' ');
         StringBuilder itemName = new StringBuilder();
