@@ -12,13 +12,13 @@ public class AnnounceShutdownCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         switch (args[0].toLowerCase()) {
             default:
-                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server fährt in " + args[0] + " Minuten herrunter!!!");
+                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server fährt in " + args[0] + " Minuten herunter!!!");
                 break;
             case "1":
-                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server fährt in einer Minute herrunter!!!");
+                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server fährt in einer Minute herunter!!!");
                 break;
             case "0":
-                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server fährt jetzt herrunter!!!");
+                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server fährt jetzt herunter!!!");
                 break;
         }
         return false;
