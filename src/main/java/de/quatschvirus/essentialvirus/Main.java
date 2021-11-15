@@ -6,7 +6,9 @@ import de.quatschvirus.essentialvirus.actionbar.LagDisplay;
 import de.quatschvirus.essentialvirus.actionbar.TimeDisplay;
 import de.quatschvirus.essentialvirus.backpack.BackpackManager;
 import de.quatschvirus.essentialvirus.commands.*;
-import de.quatschvirus.essentialvirus.commands.economy.*;
+import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
+import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
+import de.quatschvirus.essentialvirus.commands.economy.PayCommand;
 import de.quatschvirus.essentialvirus.listeners.*;
 import de.quatschvirus.essentialvirus.timer.Timer;
 import de.quatschvirus.essentialvirus.utils.Config;
@@ -15,13 +17,11 @@ import de.quatschvirus.essentialvirus.utils.NoTabComplete;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
 
@@ -84,6 +84,8 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new ChatListener(), this);
         pluginManager.registerEvents(new SleepListener(), this);
         pluginManager.registerEvents(new DeathListener(), this);
+        pluginManager.registerEvents(new BlockBreakListener(), this);
+        pluginManager.registerEvents(new BlockPlaceListener(), this);
     }
 
     @SuppressWarnings("ConstantConditions")
