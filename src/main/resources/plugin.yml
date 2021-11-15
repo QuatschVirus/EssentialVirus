@@ -13,17 +13,17 @@ commands:
   timer:
     description: Ein Timer zum Messen der Spielzeit
     #permission: essentialvirus.commands.timer
-    permission-message: Du hast nicht die benötigten Berechtigungen, um den Timer zu bedienen!
+    #permission-message: Du hast nicht die benötigten Berechtigungen, um den Timer zu bedienen!
   chatcolor:
     description: Ändert die Farbe deines Namens im Chat
     #permission: essentialvirus.commands.chatcolor
-    permission-message: Du hast nicht die benötigten Berechtigungen, um deine Chatfarbe zu ändern!
+    #permission-message: Du hast nicht die benötigten Berechtigungen, um deine Chatfarbe zu ändern!
     aliases:
       - cc
   nick:
     description: Nick-Befehl. Eigentlich selbsterklärend...
     #permission: essentialvirus.commands.nick
-    permission-message: Du hast nicht die benötigten Berechtigungen, um den nick-Befehl zu benutzen!
+    #permission-message: Du hast nicht die benötigten Berechtigungen, um den nick-Befehl zu benutzen!
   announceshutdown:
     description: Küdigt das Herunterfahren des Servers an.
     permission: essentialvirus.commands.announceshutdown
@@ -35,13 +35,13 @@ commands:
   playerteleport:
     description: Bearbeiter teleport-Befehl für Nicht-OP's. Ein Teleport kostet den Spieler, der den Befehl ausführt, einen Smaragd
     #permission: essentialvirus.commands.teleport
-    permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
+    #permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
     aliases:
       - ptp
   transfer:
     description: Übertrage die Items, die du gerade in deiner Hand hast, an einen Spieler. Kostet dich einen Smaragd
     #permission: essentialvirus.commands.transfer
-    permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
+    #permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
   balance:
     description: Zeigt dir deinen Kontostand an
   pay:
