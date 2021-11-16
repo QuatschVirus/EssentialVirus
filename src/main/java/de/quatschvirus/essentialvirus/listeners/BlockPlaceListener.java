@@ -13,14 +13,11 @@ public class BlockPlaceListener implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         switch (event.getBlock().getType()) {
             case SPAWNER: {
-                switch (event.getItemInHand().getItemMeta().getDisplayName()) {
-                    case "Zombie Spawner": {
-                        CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
-                        spawner.setSpawnedType(EntityType.ZOMBIE);
-                        spawner.update();
-                        break;
-                    }
-                }
+                String name = event.getItemInHand().getItemMeta().getLore().get(0).substring(8);
+                CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
+                spawner.setSpawnedType(EntityType.valueOf(name));
+                spawner.update();
+                break;
             }
         }
     }

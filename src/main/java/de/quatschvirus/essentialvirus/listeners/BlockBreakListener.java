@@ -10,6 +10,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Collections;
+
 public class BlockBreakListener implements Listener {
 
     @SuppressWarnings({"SwitchStatementWithTooFewBranches", "ConstantConditions"})
@@ -20,16 +22,12 @@ public class BlockBreakListener implements Listener {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.IRON_PICKAXE || event.getPlayer().getInventory().getItemInMainHand().getType() == Material.DIAMOND_PICKAXE || event.getPlayer().getInventory().getItemInMainHand().getType() == Material.NETHERITE_PICKAXE) {
                     if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)) {
                         event.setExpToDrop(0);
-                        switch (((CreatureSpawner) event.getBlock().getState()).getSpawnedType()) {
-                            case ZOMBIE: {
-                                ItemStack spawner = new ItemStack(Material.SPAWNER);
-                                ItemMeta spawnerMeta = spawner.getItemMeta();
-                                spawnerMeta.setDisplayName(ChatColor.RESET + "Zombie Spawner");
-                                spawner.setItemMeta(spawnerMeta);
-                                event.getPlayer().getWorld().dropItemNaturally(event.getBlock().getLocation(), spawner);
-                                break;
-                            }
-                        }
+                        ItemStack spawner = new ItemStack(Material.SPAWNER);
+                        ItemMeta spawnerMeta = spawner.getItemMeta();
+                        String name = ((CreatureSpawner) event.getBlock().getState()).getSpawnedType().name();
+                        spawnerMeta.setLore(Collections.singletonList(ChatColor.RESET + "Spawnt: " + name));
+                        spawner.setItemMeta(spawnerMeta);
+                        event.getPlayer().getWorld().dropItemNaturally(event.getBlock().getLocation(), spawner);
                     }
                 }
                 break;
