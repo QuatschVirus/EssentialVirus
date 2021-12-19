@@ -31,103 +31,103 @@ public class ChatcolorCommand implements CommandExecutor, TabCompleter {
 
         switch (args[0]) {
             case "dark_red": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_RED);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_RED.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_RED + "dunkelrot (dark_red)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "red": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RED);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RED.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.RED + "rot (red)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "gold": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GOLD);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GOLD.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.GOLD + "gold (gold)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "yellow": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.YELLOW);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.YELLOW.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.YELLOW + "gelb (yellow)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_green": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GREEN);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GREEN.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_GREEN + "dunkelgrün (dark_green)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "green": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GREEN);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GREEN.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.GREEN + "grün (green)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "aqua": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.AQUA);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.AQUA.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.AQUA + "cyan (aqua)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_aqua": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_AQUA);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_AQUA.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_AQUA + "türkis (dark_aqua)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_blue": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_BLUE);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_BLUE.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_BLUE + "dunkel_blau (dark_blue)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "blue": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLUE);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLUE.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.BLUE + "Violet (blue)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "light_purple": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.LIGHT_PURPLE);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.LIGHT_PURPLE.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.LIGHT_PURPLE + "pink (light_purple)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_purple": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_PURPLE);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_PURPLE.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_PURPLE + "lila (dark_purple)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "white": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.WHITE);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.WHITE.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.WHITE + "weiß (white)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "gray": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GRAY);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.GRAY.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.GRAY + "hellgrau (gray)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "dark_gray": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GRAY);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.DARK_GRAY.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.DARK_GRAY + "dunkelgrau (dark_gray)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "black": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLACK);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.BLACK.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zu " + ChatColor.BLACK + "schwarz (black)" + ChatColor.RESET + "geändert");
                 break;
             }
 
             case "default": {
-                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RESET);
+                Config.set("chatcolor." + player.getUniqueId(), ChatColor.RESET.toString());
                 sender.sendMessage(Main.getPrefix() + "Deine Chatfarbe wurde zurückgesetzt");
                 break;
             }
