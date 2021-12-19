@@ -10,6 +10,7 @@ import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
 import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
 import de.quatschvirus.essentialvirus.commands.economy.PayCommand;
 import de.quatschvirus.essentialvirus.listeners.*;
+import de.quatschvirus.essentialvirus.logging.Log;
 import de.quatschvirus.essentialvirus.timer.Timer;
 import de.quatschvirus.essentialvirus.utils.Config;
 import de.quatschvirus.essentialvirus.utils.Lag;
@@ -45,6 +46,7 @@ public final class Main extends JavaPlugin {
 
 
 
+    @SuppressWarnings("InstantiationOfUtilityClass")
     @Override
     public void onEnable() {
         timer = new Timer();
@@ -59,6 +61,7 @@ public final class Main extends JavaPlugin {
         new BalanceDisplay();
         new TimeDisplay();
         new LagDisplay();
+        new Log();
 
         listenerRegistration();
         commandRegistration();
@@ -113,6 +116,7 @@ public final class Main extends JavaPlugin {
             getCommand("display").setExecutor(new DisplayCommand());
             getCommand("indev").setExecutor(new IndevCommand());
             getCommand("indev").setTabCompleter(new NoTabComplete());
+            getCommand("blocktnt").setExecutor(new BlockTNTCommand());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
