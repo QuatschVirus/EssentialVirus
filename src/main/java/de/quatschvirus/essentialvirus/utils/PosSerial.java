@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class PosSerial {
 
-    public static ArrayList<Object> toSerial(Location location) {
-        ArrayList<Object> serial = new ArrayList<>();
+    public static ArrayList<String> toSerial(Location location) {
+        ArrayList<String> serial = new ArrayList<>();
         if(location.getWorld() != null) {
             serial.add(location.getWorld().getName());
         } else {
