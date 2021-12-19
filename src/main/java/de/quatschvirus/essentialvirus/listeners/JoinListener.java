@@ -23,7 +23,7 @@ public class JoinListener implements Listener {
         event.setJoinMessage(Main.getPrefix() + ChatColor.RED + player.getName() + ChatColor.YELLOW + " ist aufgetaucht.");
 
         if (!Config.contains("balance." + player.getUniqueId())) {
-            Config.set("balance." + player.getUniqueId(), 0);
+            Config.set("balance." + player.getUniqueId(), 10);
         }
         if (!Config.contains("indev.teleported." + player.getUniqueId())) {
             Config.set("indev.teleported." + player.getUniqueId(), true);
