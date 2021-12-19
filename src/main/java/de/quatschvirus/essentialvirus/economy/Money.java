@@ -1,8 +1,7 @@
-package de.quatschvirus.essentialvirus.utils;
+package de.quatschvirus.essentialvirus.economy;
 
+import de.quatschvirus.essentialvirus.utils.Config;
 import org.bukkit.entity.Player;
-
-import java.io.IOException;
 
 public class Money {
 
