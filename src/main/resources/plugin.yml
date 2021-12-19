@@ -56,3 +56,5 @@ commands:
     description: Zum An-/Ausschalten des Displays.
   indev:
     description: Zum An-/Ausschalten des Indev-Modus.
+  blocktnt:
+    description: Blockiert die angegebenen Spieler, TNT zu platzieren
