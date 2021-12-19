@@ -10,8 +10,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.IOException;
-
 public class APICommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -23,7 +21,6 @@ public class APICommand implements CommandExecutor {
             }
         }
         if (args.length > 0) {
-            //noinspection SwitchStatementWithTooFewBranches
             switch (args[0]) {
                 case "update": {
                     if (args.length == 2) {
@@ -58,9 +55,22 @@ public class APICommand implements CommandExecutor {
                                 Main.getInstance().getTimer().setRunning((boolean) Config.get("timer.wasRunning"));
                             }
                         }.runTaskLater(Main.getInstance(), delay);
-                    }
+                    } else {
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.kickPlayer("Das Plugin wird geupdated. Bitte warte ca. 5 Sekunden, bevor du den Server wieder betrittst");
+                        }
+                        Config.set("timer.wasRunning", Main.getInstance().getTimer().isRunning());
 
+                        Bukkit.reload();
+                        Main.getInstance().getTimer().setRunning((boolean) Config.get("timer.wasRunning"));
+                    }
                     break;
+                }
+
+                case "kickAll": {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.kickPlayer("Du wurdest von einem Admin gekickt! Grund: " + (args.length == 2 ? args[1] : "Es wurde kein Grund angegeben."));
+                    }
                 }
             }
         }
