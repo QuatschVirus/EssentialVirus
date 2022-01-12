@@ -17,7 +17,7 @@ public class SleepListener implements Listener {
         switch (event.getBedEnterResult()) {
             case OK: {
                 sleeping++;
-                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + event.getPlayer().getDisplayName() + " liegt im Bett! (" + sleeping + "/" + Bukkit.getOnlinePlayers().size() + ")");
+                Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + event.getPlayer().getDisplayName() + " liegt im Bett! (" + sleeping + "/" + Bukkit.getWorlds().get(0).getPlayers().size() + ")");
                 break;
             }
             case NOT_POSSIBLE_NOW: {
@@ -44,7 +44,7 @@ public class SleepListener implements Listener {
             }
         } else {
             sleeping--;
-            Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + event.getPlayer().getDisplayName() + " hat das Bett verlassen! (" + sleeping + "/" + Bukkit.getOnlinePlayers().size() + ")");
+            Main.getInstance().getServer().broadcastMessage(Main.getPrefix() + event.getPlayer().getDisplayName() + " hat das Bett verlassen! (" + sleeping + "/" + Bukkit.getWorlds().get(0).getPlayers().size() + ")");
         }
     }
 }
