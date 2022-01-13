@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.listeners;
 
 import de.quatschvirus.essentialvirus.Main;
+import de.quatschvirus.essentialvirus.types.Change;
 import de.quatschvirus.essentialvirus.utils.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,10 +16,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class JoinListener implements Listener {
+    private final ArrayList<Player> seenChanges = new ArrayList<>();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-
         Player player = event.getPlayer();
         event.setJoinMessage(Main.getPrefix() + ChatColor.RED + player.getName() + ChatColor.YELLOW + " ist aufgetaucht.");
 
@@ -53,6 +54,14 @@ public class JoinListener implements Listener {
         }
 
         Main.getInstance().getActionBarManager().addActionBar(player);
+        if (!seenChanges.contains(player)) {
+            StringBuilder out  = new StringBuilder();
+            for (Change change : Main.getChanges()) {
+                out.append("\n").append(change.render());
+            }
+            player.sendMessage(Main.getPrefix() + "Neuste Änderungen:" + out);
+            seenChanges.add(player);
+        }
     }
 
 }

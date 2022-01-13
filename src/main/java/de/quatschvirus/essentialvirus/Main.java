@@ -11,7 +11,9 @@ import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
 import de.quatschvirus.essentialvirus.commands.economy.PayCommand;
 import de.quatschvirus.essentialvirus.listeners.*;
 import de.quatschvirus.essentialvirus.logging.Log;
+import de.quatschvirus.essentialvirus.otherActive.VoidSaver;
 import de.quatschvirus.essentialvirus.timer.Timer;
+import de.quatschvirus.essentialvirus.types.Change;
 import de.quatschvirus.essentialvirus.utils.Config;
 import de.quatschvirus.essentialvirus.utils.Lag;
 import de.quatschvirus.essentialvirus.utils.NoTabComplete;
@@ -26,10 +28,22 @@ import java.util.ArrayList;
 
 public final class Main extends JavaPlugin {
 
+    private static final Change[] changes = new Change[]{
+            new Change("VoidSaver", new String[]{
+                    "System zum Schutz vor dem Void",
+                    "kann mit \"/voidsaverexclude\" oder \"vsx\" für die aktuelle Session (bis Plugin-Reload)",
+                    "teleportiert dich zu deinem letzten sicheren Punkt",
+                    "kostet 1€"}),
+            new Change("Changelog", new String[]{
+                    "zeigt die letzten Änderungen des Servers an",
+                    "zeigt sie nur beim ersten Join nach dem letzten Plugin-Reload an"
+            })};
+
     private static Main instance;
     private Timer timer;
     private BackpackManager backpackManager;
     private ActionBarManager actionBarManager;
+    private VoidSaver voidSaver;
 
     private boolean indev = false;
 
@@ -52,6 +66,7 @@ public final class Main extends JavaPlugin {
         timer = new Timer();
         backpackManager = new BackpackManager();
         actionBarManager = new ActionBarManager();
+        voidSaver = new VoidSaver();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
         if (Config.contains("indev.isindev")) {
@@ -75,7 +90,6 @@ public final class Main extends JavaPlugin {
         timer.saveTime();
         backpackManager.save();
         Config.save();
-        // Plugin shutdown logic
     }
 
 
@@ -89,6 +103,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new DeathListener(), this);
         pluginManager.registerEvents(new BlockBreakListener(), this);
         pluginManager.registerEvents(new BlockPlaceListener(), this);
+        pluginManager.registerEvents(voidSaver, this);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -138,6 +153,10 @@ public final class Main extends JavaPlugin {
         return actionBarManager;
     }
 
+    public VoidSaver getVoidSaver() {
+        return voidSaver;
+    }
+
     public boolean isIndev() {
         return indev;
     }
@@ -155,5 +174,9 @@ public final class Main extends JavaPlugin {
                 p.kickPlayer(ChatColor.RED + "Der Indev-Modus wurde aktiviert.");
             }
         }
+    }
+
+    public static Change[] getChanges() {
+        return changes;
     }
 }
