@@ -58,3 +58,7 @@ commands:
     description: Zum An-/Ausschalten des Indev-Modus.
   blocktnt:
     description: Blockiert die angegebenen Spieler, TNT zu platzieren
+  voidsaverexclude:
+    description: Deaktiviert den VoidSaver für dich. Hält nur bis zum nächsten PLugin-Reload.
+    aliases:
+      - vsx
