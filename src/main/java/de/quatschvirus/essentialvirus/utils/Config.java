@@ -33,28 +33,8 @@ public class Config {
 
     }
 
-    public static boolean contains(String path) {
-        return config.contains(path);
-    }
-
-    public static void set(String path, Object value) {
-            config.set(path, value);
-    }
-
-    public static Object get(String path) {
-        if(!contains(path)) {
-            return "";
-        }else {
-            return config.get(path);
-        }
-    }
-
-    public static List<String> getStringList(String path) {
-        if(!contains(path)) {
-            return new ArrayList<>();
-        }else {
-            return config.getStringList(path);
-        }
+    public static YamlConfiguration getConfig() {
+        return config;
     }
 
     public static void save() {
@@ -64,4 +44,6 @@ public class Config {
             e.printStackTrace();
         }
     }
+
+
 }

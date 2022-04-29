@@ -15,8 +15,8 @@ public class Timer {
     private int time;
 
     public Timer() {
-        if (Config.contains("timer.time")) {
-            this.time = (int) Config.get("timer.time");
+        if (Config.getConfig().contains("timer.time")) {
+            this.time = Config.getConfig().getInt("timer.time");
         } else {
             this.time = 0;
         }
@@ -40,7 +40,7 @@ public class Timer {
     }
 
     public void saveTime() {
-        Config.set("timer.time", getTime());
+        Config.getConfig().set("timer.time", getTime());
     }
 
     public String getTimeString() {

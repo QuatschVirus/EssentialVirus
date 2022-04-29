@@ -8,18 +8,22 @@ import de.quatschvirus.essentialvirus.utils.PosSerial;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class PosCommand extends PlayerCommand {
+
+    private final YamlConfiguration config = Config.getConfig();
+
     @Override
     public void function(Player player, Command command, String label, String[] args) {
-        if (!Config.contains("pos.positions")) {
-            Config.set("pos.positions", new ArrayList<String>());
+        if (!config.contains("pos.positions")) {
+            config.set("pos.positions", new ArrayList<String>());
         }
-        ArrayList<String> positions = (ArrayList<String>) Config.getStringList("pos.positions");
+        ArrayList<String> positions = (ArrayList<String>) config.getStringList("pos.positions");
         switch (args.length) {
             case 0: {
                 player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
@@ -60,7 +64,7 @@ public class PosCommand extends PlayerCommand {
                             return;
                         }
                         Money.remove(player, 10);
-                        Location destination = PosSerial.fromSerial((ArrayList<String>) Config.getStringList("pos." + args[1]));
+                        Location destination = PosSerial.fromSerial((ArrayList<String>) config.getStringList("pos." + args[1]));
 
 
                 }

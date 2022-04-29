@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,13 +29,19 @@ public class BlockPlaceListener implements Listener {
             }
 
             case TNT: {
-                if (Config.contains("TNTBlock")) {
-                    ArrayList<String> blockedPlayers = (ArrayList<String>) Config.getStringList("TNTBlock");
+                if (Config.getConfig().contains("TNTBlock")) {
+                    ArrayList<String> blockedPlayers = (ArrayList<String>) Config.getConfig().getStringList("TNTBlock");
                     if (blockedPlayers.contains(event.getPlayer().getUniqueId().toString())) {
                         event.getBlock().setType(Material.AIR);
                         event.getPlayer().sendMessage(Main.getPrefix() + ChatColor.RED + "Es ist dir nicht gestattet, TNT zu platzieren!");
                         Bukkit.getLogger().fine(event.getPlayer().getUniqueId() + " hat versucht, TNT zu platzieren!");
                     }
+                }
+            }
+
+            case SAND, RED_SAND, GRAVEL: {
+                if (event.getItemInHand().getEnchantments().containsKey(Enchantment.KNOCKBACK)) {
+                    Main.getInstance().getGeneratorManager().add(event.getBlockPlaced());
                 }
             }
         }

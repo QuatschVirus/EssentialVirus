@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.backpack;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.IOException;
 import java.util.*;
@@ -8,6 +9,7 @@ import java.util.*;
 public class BackpackManager {
 
     private final Map<UUID, Backpack> map;
+    private final YamlConfiguration config = Config.getConfig();
 
     public BackpackManager() {
         map = new HashMap<>();
@@ -30,13 +32,13 @@ public class BackpackManager {
 
     private void load() {
 
-        List<String> uuids = Config.getStringList("backpack.uuids");
+        List<String> uuids = config.getStringList("backpack.uuids");
 
         uuids.forEach(s -> {
 
             UUID uuid = UUID.fromString(s);
 
-            String base64 = (String) Config.get("backpack.inventory." + s);
+            String base64 = config.getString("backpack.inventory." + s);
 
             try {
                 map.put(uuid, new Backpack(base64));
@@ -55,8 +57,8 @@ public class BackpackManager {
             uuids.add(uuid.toString());
         }
 
-        Config.set("backpack.uuids", uuids);
+        config.set("backpack.uuids", uuids);
 
-        map.forEach((uuid, backpack) -> Config.set("backpack.inventory." + uuid.toString(), backpack.toBase64()));
+        map.forEach((uuid, backpack) -> config.set("backpack.inventory." + uuid.toString(), backpack.toBase64()));
     }
 }

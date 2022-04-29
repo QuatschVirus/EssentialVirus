@@ -37,10 +37,10 @@ public class Log {
     }
 
     public static boolean playercheck(Player player) {
-        if (Config.contains("log.players")) {
-            return (Config.getStringList("log.players").contains(player.getUniqueId().toString()));
+        if (Config.getConfig().contains("log.players")) {
+            return (Config.getConfig().getStringList("log.players").contains(player.getUniqueId().toString()));
         }
-        Config.set("log.players", new ArrayList<String>());
+        Config.getConfig().set("log.players", new ArrayList<String>());
         return false;
     }
 

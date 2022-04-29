@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class BalanceDisplay {
     private void display() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            Main.getInstance().getActionBarManager().getActionBar(player).set(1, ChatColor.GREEN + "Kontostand: " + Config.get("balance." + player.getUniqueId()) + "€");
+            Main.getInstance().getActionBarManager().getActionBar(player).set(1, ChatColor.GREEN + "Kontostand: " + Config.getConfig().getString("balance." + player.getUniqueId()) + "€");
         }
     }
 

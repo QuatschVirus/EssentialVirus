@@ -9,6 +9,7 @@ import de.quatschvirus.essentialvirus.commands.*;
 import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
 import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
 import de.quatschvirus.essentialvirus.commands.economy.PayCommand;
+import de.quatschvirus.essentialvirus.generator.GeneratorManager;
 import de.quatschvirus.essentialvirus.listeners.*;
 import de.quatschvirus.essentialvirus.logging.Log;
 import de.quatschvirus.essentialvirus.otherActive.VoidSaver;
@@ -20,30 +21,57 @@ import de.quatschvirus.essentialvirus.utils.NoTabComplete;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public final class Main extends JavaPlugin {
 
     private static final Change[] changes = new Change[]{
-            new Change("VoidSaver", new String[]{
-                    "System zum Schutz vor dem Void",
-                    "kann mit \"/voidsaverexclude\" oder \"vsx\" für die aktuelle Session (bis Plugin-Reload)",
-                    "teleportiert dich zu deinem letzten sicheren Punkt",
-                    "kostet 1€"}),
-            new Change("Changelog", new String[]{
-                    "zeigt die letzten Änderungen des Servers an",
-                    "zeigt sie nur beim ersten Join nach dem letzten Plugin-Reload an"
-            })};
+            new Change("Generatoren", new String[]{
+                    "Generiere Sand, Roten SAnd und Kies",
+                    "Kostet 50€",
+                    "Kann mit /generator gekauft werden",
+                    "Wird durch Rechtsklick mit Picke oder Schaufel abgebaut"
+                })
+            };
 
     private static Main instance;
     private Timer timer;
     private BackpackManager backpackManager;
     private ActionBarManager actionBarManager;
     private VoidSaver voidSaver;
+    private GeneratorManager generatorManager;
+    private YamlConfiguration config;
+
+    public static List<Material> lockable = Arrays.asList(
+            Material.CHEST,
+            Material.BARREL,
+            Material.SHULKER_BOX,
+            Material.BLACK_SHULKER_BOX,
+            Material.BLUE_SHULKER_BOX,
+            Material.BROWN_SHULKER_BOX,
+            Material.CYAN_SHULKER_BOX,
+            Material.GRAY_SHULKER_BOX,
+            Material.GREEN_SHULKER_BOX,
+            Material.LIGHT_BLUE_SHULKER_BOX,
+            Material.LIGHT_GRAY_SHULKER_BOX,
+            Material.LIME_SHULKER_BOX,
+            Material.MAGENTA_SHULKER_BOX,
+            Material.ORANGE_SHULKER_BOX,
+            Material.PINK_SHULKER_BOX,
+            Material.PURPLE_SHULKER_BOX,
+            Material.RED_SHULKER_BOX,
+            Material.WHITE_SHULKER_BOX,
+            Material.YELLOW_SHULKER_BOX,
+            Material.TRAPPED_CHEST
+    );
 
     private boolean indev = false;
 
@@ -63,14 +91,16 @@ public final class Main extends JavaPlugin {
     @SuppressWarnings("InstantiationOfUtilityClass")
     @Override
     public void onEnable() {
+        config = Config.getConfig();
         timer = new Timer();
         backpackManager = new BackpackManager();
         actionBarManager = new ActionBarManager();
         voidSaver = new VoidSaver();
+        generatorManager = new GeneratorManager();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
-        if (Config.contains("indev.isindev")) {
-            indev = (boolean) Config.get("indev.isindev");
+        if (config.contains("indev.isindev")) {
+            indev = (boolean) config.get("indev.isindev");
         }
 
         new BalanceDisplay();
@@ -81,18 +111,19 @@ public final class Main extends JavaPlugin {
         listenerRegistration();
         commandRegistration();
 
+        generatorManager.run();
+
         Bukkit.getLogger().fine("Plugin enabled");
     }
 
     @Override
     public void onDisable() {
-        Config.set("indev.isindev", indev);
+        config.set("indev.isindev", indev);
         timer.saveTime();
         backpackManager.save();
+        generatorManager.save();
         Config.save();
     }
-
-
 
     private void listenerRegistration() {
         PluginManager pluginManager = Bukkit.getPluginManager();
@@ -103,6 +134,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new DeathListener(), this);
         pluginManager.registerEvents(new BlockBreakListener(), this);
         pluginManager.registerEvents(new BlockPlaceListener(), this);
+        pluginManager.registerEvents(new InteractionListener(), this);
         pluginManager.registerEvents(voidSaver, this);
     }
 
@@ -132,6 +164,9 @@ public final class Main extends JavaPlugin {
             getCommand("indev").setExecutor(new IndevCommand());
             getCommand("indev").setTabCompleter(new NoTabComplete());
             getCommand("blocktnt").setExecutor(new BlockTNTCommand());
+            getCommand("generator").setExecutor(new GeneratorCommand());
+            getCommand("lock").setExecutor(new LockCommand());
+            getCommand("lock").setTabCompleter(new NoTabComplete());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -157,6 +192,10 @@ public final class Main extends JavaPlugin {
         return voidSaver;
     }
 
+    public GeneratorManager getGeneratorManager() {
+        return generatorManager;
+    }
+
     public boolean isIndev() {
         return indev;
     }
@@ -165,9 +204,9 @@ public final class Main extends JavaPlugin {
         this.indev = indev;
         if (!indev) {
             for (Player p : Bukkit.getOnlinePlayers()) {
-                ArrayList<String> data = new ArrayList<>(Config.getStringList("indev.last_pos." + p.getUniqueId()));
+                ArrayList<String> data = new ArrayList<>(config.getStringList("indev.last_pos." + p.getUniqueId()));
                 p.teleport(new Location(Bukkit.getWorld(data.get(0)), Double.parseDouble(data.get(1)), Double.parseDouble(data.get(2)), Double.parseDouble(data.get(3))));
-                Config.set("indev.teleported." + p.getUniqueId(), true);
+                config.set("indev.teleported." + p.getUniqueId(), true);
             }
         } else {
             for (Player p : Bukkit.getOnlinePlayers()) {

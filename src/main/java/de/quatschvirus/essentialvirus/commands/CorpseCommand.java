@@ -19,8 +19,8 @@ public class CorpseCommand extends PaidCommand {
 
     @Override
     public boolean check(Player player, Command command, String label, String[] args) {
-        if (Config.contains("latest_death_inventory." + player.getUniqueId())) {
-            if (Config.get("latest_death_inventory." + player.getUniqueId()) == null) {
+        if (Config.getConfig().contains("latest_death_inventory." + player.getUniqueId())) {
+            if (Config.getConfig().get("latest_death_inventory." + player.getUniqueId()) == null) {
                 player.sendMessage(Main.getPrefix() + ChatColor.RED + "Du hast das nach deinem letzten Tot bereits getan!");
                 return false;
             }

@@ -16,7 +16,7 @@ public class BalanceCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        player.sendMessage(Main.getPrefix() + "Dein Kontostand liegt bei " + Config.get("balance." + player.getUniqueId()) + "€");
+        player.sendMessage(Main.getPrefix() + "Dein Kontostand liegt bei " + Config.getConfig().getString("balance." + player.getUniqueId()) + "€");
         return false;
     }
 }

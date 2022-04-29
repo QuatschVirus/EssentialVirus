@@ -7,11 +7,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
 public class BlockTNTCommand implements CommandExecutor {
+
+    private final YamlConfiguration config = Config.getConfig();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.isOp()) {
@@ -23,8 +27,8 @@ public class BlockTNTCommand implements CommandExecutor {
             return false;
         }
         ArrayList<String> blockedPlayers = new ArrayList<>();
-        if (Config.contains("TNTBlock")) {
-            blockedPlayers = (ArrayList<String>) Config.getStringList("TNTBlock");
+        if (config.contains("TNTBlock")) {
+            blockedPlayers = (ArrayList<String>) config.getStringList("TNTBlock");
         }
         for (String playerName : args) {
             Player player = Bukkit.getPlayer(playerName);
@@ -38,7 +42,7 @@ public class BlockTNTCommand implements CommandExecutor {
                 }
             }
         }
-        Config.set("TNTBlock", blockedPlayers);
+        config.set("TNTBlock", blockedPlayers);
         return false;
     }
 }

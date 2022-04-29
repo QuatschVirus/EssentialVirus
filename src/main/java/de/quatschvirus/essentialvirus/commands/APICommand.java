@@ -1,7 +1,6 @@
 package de.quatschvirus.essentialvirus.commands;
 
 import de.quatschvirus.essentialvirus.Main;
-import de.quatschvirus.essentialvirus.utils.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -49,20 +48,16 @@ public class APICommand implements CommandExecutor {
                                 for (Player player : Bukkit.getOnlinePlayers()) {
                                     player.kickPlayer("Das Plugin wird geupdated. Bitte warte ca. 5 Sekunden, bevor du den Server wieder betrittst");
                                 }
-                                Config.set("timer.wasRunning", Main.getInstance().getTimer().isRunning());
 
                                 Bukkit.reload();
-                                Main.getInstance().getTimer().setRunning((boolean) Config.get("timer.wasRunning"));
                             }
                         }.runTaskLater(Main.getInstance(), delay);
                     } else {
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.kickPlayer("Das Plugin wird geupdated. Bitte warte ca. 5 Sekunden, bevor du den Server wieder betrittst");
                         }
-                        Config.set("timer.wasRunning", Main.getInstance().getTimer().isRunning());
 
                         Bukkit.reload();
-                        Main.getInstance().getTimer().setRunning((boolean) Config.get("timer.wasRunning"));
                     }
                     break;
                 }

@@ -9,7 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +81,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
                 Timer timer = Main.getInstance().getTimer();
 
                 timer.setRunning(false);
-                Config.set("timer.time", timer.getTime());
+                Config.getConfig().set("timer.time", timer.getTime());
                 timer.setRunning(true);
                 sender.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Die Zeit wurde gespeichert!");
 

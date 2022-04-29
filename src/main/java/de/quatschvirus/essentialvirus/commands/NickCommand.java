@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NickCommand implements CommandExecutor, TabCompleter {
+
+    private final YamlConfiguration config = Config.getConfig();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -28,11 +32,11 @@ public class NickCommand implements CommandExecutor, TabCompleter {
 
         switch (args.length) {
             case 0: {
-                if(Config.contains("nick." + runner.getUniqueId())) {
-                    if(Config.get("nick." + runner.getUniqueId()) == null) {
+                if(config.contains("nick." + runner.getUniqueId())) {
+                    if(config.get("nick." + runner.getUniqueId()) == null) {
                         runner.sendMessage(Main.getPrefix() + ChatColor.RED + "Du hast momentan keinen Nicknamen!");
                     } else {
-                        runner.sendMessage(Main.getPrefix() + "Dein Nickname ist " + ChatColor.GREEN + Config.get("nick." + runner.getUniqueId()));
+                        runner.sendMessage(Main.getPrefix() + "Dein Nickname ist " + ChatColor.GREEN + config.get("nick." + runner.getUniqueId()));
                     }
                 } else {
                     runner.sendMessage(Main.getPrefix() + ChatColor.RED + "Du hast momentan keinen Nicknamen!");
@@ -55,7 +59,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                     runner.setDisplayName(runner.getName());
                     runner.setPlayerListName(runner.getName());
                     runner.setCustomName(runner.getName());
-                    Config.set("nick." + runner.getUniqueId(), null);
+                    config.set("nick." + runner.getUniqueId(), null);
                     runner.sendMessage(Main.getPrefix() + "Dein Nickname wurde erfolgreich zurückgesetzt!");
                     break;
 
@@ -63,7 +67,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                 runner.setDisplayName(args[0]);
                 runner.setPlayerListName(args[0]);
                 runner.setCustomName(args[0]);
-                Config.set("nick." + runner.getUniqueId(), args[0]);
+                config.set("nick." + runner.getUniqueId(), args[0]);
                 runner.sendMessage(Main.getPrefix() + "Dein Nickname wurde erfolgreich auf " + ChatColor.GREEN + args[0] + ChatColor.RESET + " gesetzt!");
                 break;
             }
@@ -87,14 +91,14 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                     target.setDisplayName(target.getName());
                     target.setPlayerListName(target.getName());
                     target.setCustomName(target.getName());
-                    Config.set("nick." + target.getUniqueId(), null);
+                    config.set("nick." + target.getUniqueId(), null);
                     runner.sendMessage(Main.getPrefix() + "Der Nickname von " + args[0] + " wurde erfolgreich zurückgesetzt!");
                     break;
                 }
                 target.setDisplayName(args[1]);
                 target.setPlayerListName(args[1]);
                 target.setCustomName(args[1]);
-                Config.set("nick." + runner.getUniqueId(), args[1]);
+                config.set("nick." + runner.getUniqueId(), args[1]);
                 target.sendMessage(Main.getPrefix() + "Der Nickname von " + ChatColor.GREEN + args[0] + ChatColor.RESET + " wurde erfolgreich auf " + ChatColor.GREEN + args[1] + ChatColor.RESET + " gesetzt!");
                 break;
 

@@ -14,6 +14,6 @@ public class DeathListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        Config.set("latest_death_inventory." + player.getUniqueId(), Base64.itemStackArrayToBase64(player.getInventory().getContents()));
+        Config.getConfig().set("latest_death_inventory." + player.getUniqueId(), Base64.itemStackArrayToBase64(player.getInventory().getContents()));
     }
 }

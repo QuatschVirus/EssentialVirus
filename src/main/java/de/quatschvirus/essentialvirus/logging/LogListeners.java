@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.logging;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,14 +16,16 @@ import java.util.Objects;
 
 public class LogListeners implements Listener {
 
+    private final YamlConfiguration config = Config.getConfig();
+
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (Log.playercheck(event.getPlayer())) {
             ArrayList<String> listen;
-            if (Config.contains("log.listenPlace")) {
-                listen = (ArrayList<String>) Config.getStringList("log.listenPlace");
+            if (config.contains("log.listenPlace")) {
+                listen = (ArrayList<String>) config.getStringList("log.listenPlace");
             } else {
-                Config.set("log.listenPlace", new ArrayList<>(Arrays.asList("TNT", "BEACON")));
+                config.set("log.listenPlace", new ArrayList<>(Arrays.asList("TNT", "BEACON")));
                 listen = new ArrayList<>(Arrays.asList("TNT", "BEACON"));
             }
             if (listen.contains(event.getBlock().getType().name())) {
@@ -35,10 +38,10 @@ public class LogListeners implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         if (Log.playercheck(event.getPlayer())) {
             ArrayList<String> listen;
-            if (Config.contains("log.listenBreak")) {
-                listen = (ArrayList<String>) Config.getStringList("log.listenBreak");
+            if (config.contains("log.listenBreak")) {
+                listen = (ArrayList<String>) config.getStringList("log.listenBreak");
             } else {
-                Config.set("log.listenBreak", new ArrayList<>(Arrays.asList("TNT", "BEACON")));
+                config.set("log.listenBreak", new ArrayList<>(Arrays.asList("TNT", "BEACON")));
                 listen = new ArrayList<>(Arrays.asList("TNT", "BEACON", "DIAMOND_BLOCK", "NETHERITE_BLOCK", "OBSIDIAN"));
             }
             if (listen.contains(event.getBlock().getType().name())) {

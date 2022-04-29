@@ -9,12 +9,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PayCommand implements CommandExecutor, TabCompleter {
+
+    private final YamlConfiguration config = Config.getConfig();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -31,12 +35,12 @@ public class PayCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(Main.getPrefix() + ChatColor.RED + args[0] + " ist kein Spieler oder ist nicht online!");
             return true;
         }
-        if (Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) < 0 ) {
-            sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Dein Kontostand ist unter Null (" + Config.get("balance." + player.getUniqueId()) + "€)!");
+        if (config.getInt("balance." + player.getUniqueId()) < 0 ) {
+            sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Dein Kontostand ist unter Null (" + config.get("balance." + player.getUniqueId()) + "€)!");
             return true;
         }
-        if (Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) - Integer.parseInt(args[1]) < 0 ) {
-            sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Dein Kontostand wäre nach der Zahlng unter Null (" + (Integer.parseInt(Config.get("balance." + player.getUniqueId()).toString()) - Integer.parseInt(args[1])) + "€)!");
+        if (config.getInt("balance." + player.getUniqueId()) - Integer.parseInt(args[1]) < 0 ) {
+            sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Dein Kontostand wäre nach der Zahlng unter Null (" + (config.getInt("balance." + player.getUniqueId()) - Integer.parseInt(args[1])) + "€)!");
             return true;
         }
         Money.remove(player, Integer.parseInt(args[1]));
