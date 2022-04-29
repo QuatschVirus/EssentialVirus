@@ -25,7 +25,11 @@ public class VoidSaver implements Listener {
             Money.remove(p, 1);
             p.teleport(lastSafe.get(p).add(0, 1, 0));
             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 5, 1, true, true));
-            p.setHealth(p.getHealth() + event.getDamage());
+            if (p.getHealth() + event.getDamage() > 20) {
+                p.setHealth(20);
+            } else {
+                p.setHealth(p.getHealth() + event.getDamage());
+            }
         }
     }
 

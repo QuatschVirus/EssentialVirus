@@ -62,3 +62,7 @@ commands:
     description: Deaktiviert den VoidSaver für dich. Hält nur bis zum nächsten PLugin-Reload.
     aliases:
       - vsx
+  generator:
+    description: Kaufe einen Generator
+  lock:
+    description: Sperre eine Kiste oder ähnliches
