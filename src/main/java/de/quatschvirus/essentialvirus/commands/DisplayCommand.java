@@ -16,48 +16,34 @@ public class DisplayCommand extends PlayerCommand implements TabCompleter {
     @Override
     public void function(Player player, Command command, String label, String[] args) {
         switch (args.length) {
-            case 0: {
+            case 0 -> {
                 Main.getInstance().getActionBarManager().getActionBar(player).setVisible(!Main.getInstance().getActionBarManager().getActionBar(player).isVisible());
                 if (Main.getInstance().getActionBarManager().getActionBar(player).isVisible()) {
                     player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display wieder sichtbar gemacht!");
                 } else {
                     player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display unsichtbar gemacht!");
                 }
-                break;
             }
-
-            case 1: {
+            case 1 -> {
                 switch (args[0].toLowerCase()) {
-                    case "on": {
+                    case "on" -> {
                         Main.getInstance().getActionBarManager().getActionBar(player).setVisible(true);
                         player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display wieder sichtbar gemacht!");
-                        break;
                     }
-
-                    case "off": {
+                    case "off" -> {
                         Main.getInstance().getActionBarManager().getActionBar(player).setVisible(false);
                         player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display unsichtbar gemacht!");
-                        break;
                     }
-
-                    default: {
-                        player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
-                                "\"/display\" zum Umschalten\n" +
-                                "\"/display on\" zum Anschalten\n" +
-                                "\"/display off\" zum Ausschalten");
-                        return;
-                    }
+                    default -> player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
+                            "\"/display\" zum Umschalten\n" +
+                            "\"/display on\" zum Anschalten\n" +
+                            "\"/display off\" zum Ausschalten");
                 }
-                break;
             }
-
-            default: {
-                player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
-                        "\"/display\" zum Umschalten\n" +
-                        "\"/display on\" zum Anschalten\n" +
-                        "\"/display off\" zum Ausschalten");
-            }
-
+            default -> player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
+                    "\"/display\" zum Umschalten\n" +
+                    "\"/display on\" zum Anschalten\n" +
+                    "\"/display off\" zum Ausschalten");
         }
     }
 
