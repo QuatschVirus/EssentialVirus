@@ -40,6 +40,10 @@ public class TransferCommand extends PaidCommand {
             player.sendMessage(Main.getPrefix() + ChatColor.RED + args[0] + " ist kein Spieler oder ist nicht online!");
             return false;
         }
+        if (target.getInventory().firstEmpty() < 0) {
+            player.sendMessage(Main.getPrefix() + ChatColor.RED + "Das Inventar von " + args[0] + "ist voll!");
+            return false;
+        }
         return true;
     }
 }
