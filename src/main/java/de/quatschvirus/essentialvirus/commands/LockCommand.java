@@ -3,13 +3,10 @@ package de.quatschvirus.essentialvirus.commands;
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.commands.basecommands.PaidCommand;
 import org.bukkit.ChatColor;
-import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
-import org.bukkit.block.DoubleChest;
+import org.bukkit.Material;
+import org.bukkit.block.*;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
-
-import java.util.Arrays;
 
 public class LockCommand extends PaidCommand {
     public LockCommand() {
@@ -19,16 +16,24 @@ public class LockCommand extends PaidCommand {
     @Override
     public void function(Player player, Command command, String label, String[] args) {
         Block block = player.getTargetBlock(null, 5);
-        Chest chest = (Chest) block.getState();
-        if (chest.getInventory().getHolder() instanceof DoubleChest) {
-            chest = (Chest) ((DoubleChest) chest.getInventory().getHolder()).getLeftSide();
+        if (Main.lockable.contains(block.getType())) {
+            if (Main.shulkerboxes.contains(block.getType())) {
+                ShulkerBox state = (ShulkerBox) block.getState();
+                state.setCustomName(ChatColor.DARK_GREEN + "Gesperrte Shulkerkiste von " + player.getName());
+                state.update();
+            } else if (block.getType().equals(Material.BARREL)) {
+                Barrel state = (Barrel) block.getState();
+                state.setCustomName(ChatColor.DARK_GREEN + "Gesperrtes Fass von " + player.getName());
+                state.update();
+            } else {
+                Chest state = (Chest) block.getState();
+                if (state.getInventory().getHolder() instanceof DoubleChest) {
+                    state = (Chest) ((DoubleChest) state.getInventory().getHolder()).getLeftSide();
+                }
+                state.setCustomName(ChatColor.DARK_GREEN + "Gesperrte Kiste von " + player.getName());
+                state.update();
+            }
         }
-        StringBuilder containerName = new StringBuilder();
-        for (String word : block.getType().name().toLowerCase().split("_")) {
-            containerName.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
-        }
-        chest.setCustomName(ChatColor.DARK_GREEN + "Gesperrte " + containerName + "von " + player.getName());
-        chest.update();
     }
 
     @Override

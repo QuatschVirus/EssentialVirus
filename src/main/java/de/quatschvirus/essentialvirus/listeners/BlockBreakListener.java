@@ -3,8 +3,7 @@ package de.quatschvirus.essentialvirus.listeners;
 import de.quatschvirus.essentialvirus.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.block.Chest;
-import org.bukkit.block.CreatureSpawner;
+import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,13 +33,41 @@ public class BlockBreakListener implements Listener {
             }
         } else if (Main.lockable.contains(event.getBlock().getType())) {
             Player player = event.getPlayer();
-            Chest state = (Chest) event.getBlock().getState();
-            if (state.getCustomName() != null && state.getCustomName().contains(ChatColor.DARK_GREEN + "Gesperrt")) {
-                if (!player.getName().equals(state.getCustomName().split(" ")[state.getCustomName().split(" ").length - 1])) {
-                    event.setCancelled(true);
+            Block block = event.getBlock();
+            if (Main.lockable.contains(block.getType())) {
+                if (Main.shulkerboxes.contains(block.getType())) {
+                    ShulkerBox state = (ShulkerBox) block.getState();
+                    if (state.getCustomName() != null && state.getCustomName().contains(ChatColor.DARK_GREEN + "Gesperrt")) {
+                        if (!player.getName().equals(state.getCustomName().split(" ")[state.getCustomName().split(" ").length - 1])) {
+                            event.setCancelled(true);
+                        } else {
+                            state.setCustomName(null);
+                            state.update();
+                        }
+                    }
+                } else if (block.getType().equals(Material.BARREL)) {
+                    Barrel state = (Barrel) block.getState();
+                    if (state.getCustomName() != null && state.getCustomName().contains(ChatColor.DARK_GREEN + "Gesperrt")) {
+                        if (!player.getName().equals(state.getCustomName().split(" ")[state.getCustomName().split(" ").length - 1])) {
+                            event.setCancelled(true);
+                        } else {
+                            state.setCustomName(null);
+                            state.update();
+                        }
+                    }
                 } else {
-                    state.setCustomName(null);
-                    state.update();
+                    Chest state = (Chest) block.getState();
+                    if (state.getInventory().getHolder() instanceof DoubleChest) {
+                        state = (Chest) ((DoubleChest) state.getInventory().getHolder()).getLeftSide();
+                    }
+                    if (state.getCustomName() != null && state.getCustomName().contains(ChatColor.DARK_GREEN + "Gesperrt")) {
+                        if (!player.getName().equals(state.getCustomName().split(" ")[state.getCustomName().split(" ").length - 1])) {
+                            event.setCancelled(true);
+                        } else {
+                            state.setCustomName(null);
+                            state.update();
+                        }
+                    }
                 }
             }
         }
