@@ -181,6 +181,8 @@ public final class Main extends JavaPlugin {
             getCommand("lock").setTabCompleter(new NoTabComplete());
             getCommand("voidsaverexclude").setExecutor(new VoidSaverExcludeCommand());
             getCommand("voidsaverexclude").setTabCompleter(new NoTabComplete());
+            getCommand("unlock").setExecutor(new UnlockCommand());
+            getCommand("unlock").setTabCompleter(new NoTabComplete());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
