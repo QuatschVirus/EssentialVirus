@@ -21,26 +21,21 @@ public class APICommand implements CommandExecutor {
         }
         if (args.length > 0) {
             switch (args[0]) {
-                case "update": {
+                case "update" -> {
                     if (args.length == 2) {
                         long delay = 0;
                         switch (args[1].substring(args[1].length() - 1).toLowerCase()) {
-                            case "s": {
+                            case "s" -> {
                                 Bukkit.broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server wird in " + args[1].substring(0, args[1].length() - 1) + " Sekunden geupdatet!");
                                 delay = Integer.parseInt(args[1].substring(0, args[1].length() - 1)) * 20L;
-                                break;
                             }
-
-                            case "m": {
+                            case "m" -> {
                                 Bukkit.broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server wird in " + args[1].substring(0, args[1].length() - 1) + " Minuten geupdatet!");
                                 delay = Integer.parseInt(args[1].substring(0, args[1].length() - 1)) * 60 * 20L;
-                                break;
                             }
-
-                            case "h": {
+                            case "h" -> {
                                 Bukkit.broadcastMessage(Main.getPrefix() + ChatColor.RED + "Der Server wird in " + args[1].substring(0, args[1].length() - 1) + " Stunden geupdatet!");
                                 delay = Integer.parseInt(args[1].substring(0, args[1].length() - 1)) * 60 * 60 * 20L;
-                                break;
                             }
                         }
                         new BukkitRunnable() {
@@ -59,10 +54,8 @@ public class APICommand implements CommandExecutor {
 
                         Bukkit.reload();
                     }
-                    break;
                 }
-
-                case "kickAll": {
+                case "kickAll" -> {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.kickPlayer("Du wurdest von einem Admin gekickt! Grund: " + (args.length == 2 ? args[1] : "Es wurde kein Grund angegeben."));
                     }

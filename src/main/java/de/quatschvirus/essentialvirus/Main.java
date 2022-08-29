@@ -1,9 +1,6 @@
 package de.quatschvirus.essentialvirus;
 
-import de.quatschvirus.essentialvirus.actionbar.ActionBarManager;
-import de.quatschvirus.essentialvirus.actionbar.BalanceDisplay;
-import de.quatschvirus.essentialvirus.actionbar.LagDisplay;
-import de.quatschvirus.essentialvirus.actionbar.TimeDisplay;
+import de.quatschvirus.essentialvirus.actionbar.*;
 import de.quatschvirus.essentialvirus.backpack.BackpackManager;
 import de.quatschvirus.essentialvirus.commands.*;
 import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
@@ -119,7 +116,7 @@ public final class Main extends JavaPlugin {
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
         if (config.contains("indev.isindev")) {
-            indev = (boolean) config.get("indev.isindev");
+            indev = config.getBoolean("indev.isindev");
         }
 
         new BalanceDisplay();
