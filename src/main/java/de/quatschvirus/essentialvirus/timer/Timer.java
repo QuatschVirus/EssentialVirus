@@ -2,12 +2,8 @@ package de.quatschvirus.essentialvirus.timer;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.io.IOException;
 
 public class Timer {
 
@@ -70,23 +66,17 @@ public class Timer {
         }
     }
 
-    public void showTimer() {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (!isRunning()) {
-                Main.getInstance().getActionBarManager().getActionBar(player).set(0 , ChatColor.GOLD + "Der Timer ist pausiert!");
-            } else {
-                Main.getInstance().getActionBarManager().getActionBar(player).set(0, ChatColor.GOLD + "Timer: " + ChatColor.BOLD + getTimeString());
-            }
+    public String getTimerOutput() {
+        if (isRunning()) {
+            return ChatColor.GOLD + "Timer: " + ChatColor.BOLD + getTimeString();
         }
+        return ChatColor.GOLD + "Der Timer ist pausiert!";
     }
 
     private void run() {
         new BukkitRunnable() {
             @Override
             public void run() {
-
-                showTimer();
-
                 if (!isRunning()) {
                     return;
                 }

@@ -9,38 +9,24 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DisplayCommand extends PlayerCommand implements TabCompleter {
     @Override
     public void function(Player player, Command command, String label, String[] args) {
-        switch (args.length) {
-            case 0 -> {
-                Main.getInstance().getActionBarManager().getActionBar(player).setVisible(!Main.getInstance().getActionBarManager().getActionBar(player).isVisible());
-                if (Main.getInstance().getActionBarManager().getActionBar(player).isVisible()) {
-                    player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display wieder sichtbar gemacht!");
-                } else {
-                    player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display unsichtbar gemacht!");
-                }
+        if (args.length == 1) {
+            if ("toggle".equalsIgnoreCase(args[0])) {
+                Main.getInstance().getActionBarManager().getActionBar(player).setWholeVisible(!Main.getInstance().getActionBarManager().getActionBar(player).isWholeVisible());
+            } else if(Main.getInstance().getActionBarManager().getActionBar(player).getNames().contains(args[0])) {
+                Main.getInstance().getActionBarManager().getActionBar(player).setVisible(args[0], !Main.getInstance().getActionBarManager().getActionBar(player).isVisible(args[0]));
+            } else {
+                player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
+                        "\"/display\" zum Umschalten\n" +
+                        "\"/display toggle\" zum Umschalten aller Displays\n" +
+                        "\"/display [Name]\" zum Umschalten des genannten Displays (siehe Vorschläge)");
             }
-            case 1 -> {
-                switch (args[0].toLowerCase()) {
-                    case "on" -> {
-                        Main.getInstance().getActionBarManager().getActionBar(player).setVisible(true);
-                        player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display wieder sichtbar gemacht!");
-                    }
-                    case "off" -> {
-                        Main.getInstance().getActionBarManager().getActionBar(player).setVisible(false);
-                        player.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hust das Display unsichtbar gemacht!");
-                    }
-                    default -> player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
-                            "\"/display\" zum Umschalten\n" +
-                            "\"/display on\" zum Anschalten\n" +
-                            "\"/display off\" zum Ausschalten");
-                }
-            }
-            default -> player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
+        } else {
+            player.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendung:\n" +
                     "\"/display\" zum Umschalten\n" +
                     "\"/display on\" zum Anschalten\n" +
                     "\"/display off\" zum Ausschalten");
@@ -49,10 +35,16 @@ public class DisplayCommand extends PlayerCommand implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length == 1) {
-            return new ArrayList<>(Arrays.asList("on", "off"));
-        } else {
-            return new ArrayList<>();
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            if (args.length == 1) {
+                ArrayList<String> out = new ArrayList<>(List.of("toggle"));
+                out.addAll(Main.getInstance().getActionBarManager().getActionBar(player).getNames());
+                return out;
+            } else {
+                return new ArrayList<>();
+            }
         }
+        return new ArrayList<>();
     }
 }

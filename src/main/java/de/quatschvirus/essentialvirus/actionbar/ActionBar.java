@@ -8,55 +8,77 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ActionBar {
 
-    private final ArrayList<String> elements = new ArrayList<>();
+    private final HashMap<String, Display> elements;
     private final long timing;
     private final long delay;
-    private boolean visible = true;
+    private final ArrayList<String> visible;
+    private boolean wholeVisible = true;
     private final Player player;
 
 
-    public void set(int index, String iteration) {
-        if (this.elements.size() == index) {
-            this.elements.add(iteration);
-        } else {
-            this.elements.set(index, iteration);
-        }
-    }
-
-    public ActionBar(Player player, long timing, long delay) {
+    public ActionBar(Player player, long timing, long delay, HashMap<String, Display> elements) {
         this.timing = timing;
         this.delay = delay;
         this.player = player;
+        this.elements = elements;
+        this.visible = new ArrayList<>(elements.keySet());
+        System.out.println(player.getName());
         start();
     }
 
     private void display() {
-        StringBuilder out  = new StringBuilder();
-        for (int i = 0; i < this.elements.size(); i++) {
-            out.append(this.elements.get(i));
-            if (!(i == this.elements.size() - 1)) {
-                out.append(ChatColor.GOLD).append(" --- ");
+        if (wholeVisible) {
+            StringBuilder out = new StringBuilder();
+            ArrayList<String> render = new ArrayList<>();
+            for (String key : this.elements.keySet()) {
+                if (visible.contains(key)) {
+                    render.add(this.elements.get(key).display(player));
+                }
             }
+            for (int i = 0; i < render.size(); i++) {
+                out.append(render.get(i));
+                if (i < (render.size() - 1)) {
+                    out.append(ChatColor.GOLD).append(" --- ");
+                }
+            }
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(out.toString()));
         }
-        if(this.visible) {
-            this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(out.toString()));
-        }
-
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public boolean isVisible() {
+    public ArrayList<String> getNames() {
+        return new ArrayList<>(elements.keySet());
+    }
+
+    public boolean isVisible(String name) {
+        return visible.contains(name);
+    }
+
+    public ArrayList<String> getVisible() {
         return visible;
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+    public void setVisible(String name, boolean visibility) {
+        if (visibility) {
+            visible.add(name);
+        } else {
+            visible.remove(name);
+        }
+    }
+
+    public boolean isWholeVisible() {
+        return wholeVisible;
+    }
+
+    public void setWholeVisible(boolean wholeVisible) {
+        this.wholeVisible = wholeVisible;
     }
 
     private void start() {

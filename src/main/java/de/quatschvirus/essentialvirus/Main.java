@@ -31,11 +31,10 @@ import java.util.List;
 public final class Main extends JavaPlugin {
 
     private static final Change[] changes = new Change[]{
-            new Change("Generatoren", new String[]{
-                    "Generiere Sand, Roten SAnd und Kies",
-                    "Kostet 50€",
-                    "Kann mit /generator gekauft werden",
-                    "Wird durch Rechtsklick mit Picke oder Schaufel abgebaut"
+            new Change("Display Rework", new String[]{
+                    "Verschiedene Displays einzeln steuern",
+                    "\"/display [Name des zu verbergenden Displays]\" verbirgt das Display, gleicher Befehl nochmal zeigt es wieder an",
+                    "\"/display toggle\" schaltet alle Displays aus oder wieder an"
                 })
             };
 
@@ -119,9 +118,6 @@ public final class Main extends JavaPlugin {
             indev = config.getBoolean("indev.isindev");
         }
 
-        new BalanceDisplay();
-        new TimeDisplay();
-        new LagDisplay();
         new Log();
 
         listenerRegistration();
