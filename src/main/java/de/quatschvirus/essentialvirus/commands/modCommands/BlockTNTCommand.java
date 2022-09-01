@@ -1,4 +1,4 @@
-package de.quatschvirus.essentialvirus.commands;
+package de.quatschvirus.essentialvirus.commands.modCommands;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;

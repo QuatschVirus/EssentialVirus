@@ -1,4 +1,4 @@
-package de.quatschvirus.essentialvirus.commands;
+package de.quatschvirus.essentialvirus.commands.modCommands;
 
 import de.quatschvirus.essentialvirus.Main;
 import org.bukkit.ChatColor;
@@ -19,24 +19,12 @@ public class IndevCommand implements CommandExecutor {
         }
 
         switch (args.length) {
-            case 0: {
-                Main.getInstance().setIndev(!Main.getInstance().isIndev());
-                break;
-            }
-
-            case 1: {
+            case 0 -> Main.getInstance().setIndev(!Main.getInstance().isIndev());
+            case 1 -> {
                 switch (args[0].toLowerCase()) {
-                    case "on": {
-                        Main.getInstance().setIndev(true);
-                        break;
-                    }
-
-                    case "off": {
-                        Main.getInstance().setIndev(false);
-                        break;
-                    }
-
-                    default: {
+                    case "on" -> Main.getInstance().setIndev(true);
+                    case "off" -> Main.getInstance().setIndev(false);
+                    default -> {
                         sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendnung:\n" +
                                 "\"/indev\" zum Umschalten\n" +
                                 "\"/indev on\" zum Anschalten\n" +
@@ -44,10 +32,8 @@ public class IndevCommand implements CommandExecutor {
                         return true;
                     }
                 }
-                break;
             }
-
-            default: {
+            default -> {
                 sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Verwendnung:\n" +
                         "\"/indev\" zum Umschalten\n" +
                         "\"/indev on\" zum Anschalten\n" +
