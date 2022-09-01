@@ -2,12 +2,15 @@ package de.quatschvirus.essentialvirus.commands;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.economy.Money;
+import de.quatschvirus.essentialvirus.utils.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
 
 public class TeleportCommand implements CommandExecutor {
     @Override
@@ -35,6 +38,15 @@ public class TeleportCommand implements CommandExecutor {
             sender.sendMessage(Main.getPrefix() + ChatColor.RED + args[1] + " ist kein Spieler oder ist nicht online!");
             return true;
         }
+
+        ArrayList<String> blocked = new ArrayList<>();
+        if (Config.getConfig().contains("TPBlock")) {
+            blocked = (ArrayList<String>) Config.getConfig().getStringList("TPBlock");
+        }
+        if (blocked.contains(player.getUniqueId().toString())) {
+            sender.sendMessage(Main.getPrefix() + ChatColor.RED + "Dir ist die Verwendung des Befehls momentan nicht gestattet!");
+        }
+
         Money.remove(player, 1);
         target.teleport(destination);
         sender.sendMessage(Main.getPrefix() + ChatColor.GOLD + args[0] + " wurde zu " + args[1] + " teleportiert");

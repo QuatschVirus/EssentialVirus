@@ -68,3 +68,7 @@ commands:
     description: Sperre eine Kiste oder ähnliches
   unlock:
     description: Entsperrt einen mit "lock" gesperrten Container
+  blocktp:
+    description: Blockiert jemanden von der Nutzung des PTP-Befehls
+  log:
+    description: Add/remove a player from Watchlog

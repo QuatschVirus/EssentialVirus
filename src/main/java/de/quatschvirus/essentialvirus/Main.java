@@ -1,14 +1,16 @@
 package de.quatschvirus.essentialvirus;
 
-import de.quatschvirus.essentialvirus.actionbar.*;
+import de.quatschvirus.essentialvirus.actionbar.ActionBarManager;
 import de.quatschvirus.essentialvirus.backpack.BackpackManager;
 import de.quatschvirus.essentialvirus.commands.*;
 import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
 import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
 import de.quatschvirus.essentialvirus.commands.economy.PayCommand;
+import de.quatschvirus.essentialvirus.commands.modCommands.*;
 import de.quatschvirus.essentialvirus.generator.GeneratorManager;
 import de.quatschvirus.essentialvirus.listeners.*;
 import de.quatschvirus.essentialvirus.logging.Log;
+import de.quatschvirus.essentialvirus.logging.LogListeners;
 import de.quatschvirus.essentialvirus.otherActive.VoidSaver;
 import de.quatschvirus.essentialvirus.timer.Timer;
 import de.quatschvirus.essentialvirus.types.Change;
@@ -147,6 +149,10 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockBreakListener(), this);
         pluginManager.registerEvents(new BlockPlaceListener(), this);
         pluginManager.registerEvents(new InteractionListener(), this);
+        //pluginManager.registerEvents(new InventoryCloseListener(), this);
+
+        pluginManager.registerEvents(new LogListeners(), this);
+
         pluginManager.registerEvents(voidSaver, this);
     }
 
@@ -183,6 +189,8 @@ public final class Main extends JavaPlugin {
             getCommand("voidsaverexclude").setTabCompleter(new NoTabComplete());
             getCommand("unlock").setExecutor(new UnlockCommand());
             getCommand("unlock").setTabCompleter(new NoTabComplete());
+            getCommand("blocktp").setExecutor(new BlockTpCommand());
+            getCommand("log").setExecutor(new LogCommand());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
