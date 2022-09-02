@@ -1,19 +1,38 @@
 package de.quatschvirus.essentialvirus.listeners;
 
-import de.quatschvirus.essentialvirus.utils.Base64;
+import de.quatschvirus.essentialvirus.Main;
+import de.quatschvirus.essentialvirus.blockInventory.BlockInventory;
 import de.quatschvirus.essentialvirus.utils.Config;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.inventory.Inventory;
-
-import java.io.IOException;
+import org.bukkit.inventory.ItemStack;
 
 public class DeathListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        Config.getConfig().set("latest_death_inventory." + player.getUniqueId(), Base64.itemStackArrayToBase64(player.getInventory().getContents()));
+        String posString = player.getLocation().getWorld().getName() + " " +  player.getLocation().getBlockX() + " " + player.getLocation().getBlockY() + " " + player.getLocation().getBlockZ();
+        player.sendMessage("You died at: " + posString.substring(posString.indexOf(" ") + 1));
+        Config.getConfig().set("deaths." + posString + ".player", player.getUniqueId().toString());
+        Block gravestone = player.getLocation().getBlock();
+        Main.getInstance().getBlockInventoryManager().setInventory(new BlockInventory(gravestone, 45, ChatColor.DARK_GRAY + "Grabstein", event.getDrops().toArray(new ItemStack[]{}), player.getUniqueId().toString(), 1));
+        event.getDrops().clear();
+        Config.getConfig().set("deaths." + posString + ".replace", gravestone.getType().name());
+        Config.getConfig().set("deaths." + posString + ".xp", event.getDroppedExp());
+        event.setDroppedExp(0);
+        gravestone.setType(Material.SPRUCE_SIGN);
+        Sign data = (Sign) gravestone.getState();
+        data.setLine(0, ChatColor.WHITE + "Hier ruht:");
+        data.setLine(1, ChatColor.RED + player.getDisplayName());
+        data.setLine(2, ChatColor.WHITE + "†");
+        data.setGlowingText(true);
+        data.setEditable(false);
+        data.update();
     }
 }

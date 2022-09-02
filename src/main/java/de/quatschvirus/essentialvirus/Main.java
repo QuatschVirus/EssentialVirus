@@ -34,11 +34,15 @@ import java.util.List;
 public final class Main extends JavaPlugin {
 
     private static final Change[] changes = new Change[]{
-            new Change("Display Rework", new String[]{
-                    "Verschiedene Displays einzeln steuern",
-                    "\"/display [Name des zu verbergenden Displays]\" verbirgt das Display, gleicher Befehl nochmal zeigt es wieder an",
-                    "\"/display toggle\" schaltet alle Displays aus oder wieder an"
-                })
+            new Change("Grabsteine", new String[]{
+                    "Items und XP werden im Todeesfall begraben",
+                    "Interagieren mit dem Grabstein gibt Zugang zu Items und gewährt begrabene XP",
+                    "Leere Grabsteine verschwinden von alleine",
+                    "Grabsteine können nur vom Besitzer abgebaut werden"
+            }),
+            new Change("Todespunkt", new String[]{
+                    "Koordinaten deines Todesstandorts werden dir per Chat gesendet"
+            })
             };
 
     private static Main instance;
@@ -155,7 +159,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockBreakListener(), this);
         pluginManager.registerEvents(new BlockPlaceListener(), this);
         pluginManager.registerEvents(new InteractionListener(), this);
-        //pluginManager.registerEvents(new InventoryCloseListener(), this);
+        pluginManager.registerEvents(new InventoryCloseListener(), this);
 
         pluginManager.registerEvents(new LogListeners(), this);
 

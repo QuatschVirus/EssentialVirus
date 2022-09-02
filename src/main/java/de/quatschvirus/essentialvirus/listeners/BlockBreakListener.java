@@ -1,6 +1,8 @@
 package de.quatschvirus.essentialvirus.listeners;
 
 import de.quatschvirus.essentialvirus.Main;
+import de.quatschvirus.essentialvirus.blockInventory.BlockInventory;
+import de.quatschvirus.essentialvirus.blockInventory.BlockInventoryManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.*;
@@ -13,12 +15,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
+import java.util.Objects;
 
 public class BlockBreakListener implements Listener {
 
     @SuppressWarnings({"ConstantConditions"})
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
         if (event.getBlock().getType().equals(Material.SPAWNER)) {
             if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.IRON_PICKAXE || event.getPlayer().getInventory().getItemInMainHand().getType() == Material.DIAMOND_PICKAXE || event.getPlayer().getInventory().getItemInMainHand().getType() == Material.NETHERITE_PICKAXE) {
                 if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)) {
@@ -32,7 +36,6 @@ public class BlockBreakListener implements Listener {
                 }
             }
         } else if (Main.lockable.contains(event.getBlock().getType())) {
-            Player player = event.getPlayer();
             Block block = event.getBlock();
             if (Main.lockable.contains(block.getType())) {
                 if (Main.shulkerboxes.contains(block.getType())) {
@@ -69,6 +72,30 @@ public class BlockBreakListener implements Listener {
                         }
                     }
                 }
+            }
+        }
+        BlockInventoryManager bIM = Main.getInstance().getBlockInventoryManager();
+        if (bIM.getInventory(event.getBlock()) != null) {
+            BlockInventory bInv = bIM.getInventory(event.getBlock());
+            switch (bInv.getBreakable()) {
+                case 2 -> {
+                    bInv.dropContents();
+                    bIM.removeInventory(bInv);
+                }
+                case 1 -> {
+                    if (bInv.getOwner() != null) {
+                        if (Objects.equals(bInv.getOwner(), player.getUniqueId().toString())) {
+                            bInv.dropContents();
+                            bIM.removeInventory(bInv);
+                        } else {
+                            event.setCancelled(true);
+                        }
+                    } else {
+                        bInv.dropContents();
+                        bIM.removeInventory(bInv);
+                    }
+                }
+                case 0 -> event.setCancelled(true);
             }
         }
     }
