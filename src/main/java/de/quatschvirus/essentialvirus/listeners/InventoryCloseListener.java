@@ -26,7 +26,6 @@ public class InventoryCloseListener implements Listener {
                 if (state.getLine(0).startsWith(ChatColor.WHITE.toString()) && state.getLine(1).startsWith(ChatColor.RED.toString())) {
                     if (bInv.getInventory().isEmpty()) {
                         String posString = state.getWorld().getName() + " " + state.getX() + " " + state.getY() + " " + state.getZ();
-                        System.out.println(posString);
                         gravestone.setType(Material.valueOf(Config.getConfig().getString("deaths." + posString + ".replace")));
                         Config.getConfig().set("deaths." + posString, null);
                         Main.getInstance().getBlockInventoryManager().removeInventory(bInv);

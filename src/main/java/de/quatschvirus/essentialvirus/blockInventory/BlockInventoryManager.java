@@ -14,13 +14,10 @@ public class BlockInventoryManager {
         ArrayList<String> data;
         if (Config.getConfig().contains("blockInventories")) {
             data = (ArrayList<String>) Config.getConfig().getStringList("blockInventories");
-            System.out.println(data);
             for (String info : data) {
-                System.out.println(info);
                 inventories.add(new BlockInventory(info));
             }
         }
-        System.out.println(inventories);
     }
 
     public ArrayList<BlockInventory> getInventories() {

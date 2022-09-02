@@ -80,7 +80,6 @@ public class BlockInventory {
         Gson gson = new Gson();
         Map<String, Object> data = gson.fromJson(serial, Map.class);
         this.owner = (String) data.remove("owner");
-        System.out.println(data.get("size").getClass());
         this.title = (String) data.get("title");
         if (this.title != null) {
             this.inventory = Bukkit.createInventory(null, ((Double) data.remove("size")).intValue(), (String) data.remove("title"));

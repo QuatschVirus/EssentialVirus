@@ -26,7 +26,6 @@ public class ActionBar {
         this.player = player;
         this.elements = elements;
         this.visible = new ArrayList<>(elements.keySet());
-        System.out.println(player.getName());
         start();
     }
 
