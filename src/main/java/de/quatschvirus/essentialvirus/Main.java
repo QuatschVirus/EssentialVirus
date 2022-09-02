@@ -2,6 +2,7 @@ package de.quatschvirus.essentialvirus;
 
 import de.quatschvirus.essentialvirus.actionbar.ActionBarManager;
 import de.quatschvirus.essentialvirus.backpack.BackpackManager;
+import de.quatschvirus.essentialvirus.blockInventory.BlockInventoryManager;
 import de.quatschvirus.essentialvirus.commands.*;
 import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
 import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
@@ -41,11 +42,14 @@ public final class Main extends JavaPlugin {
             };
 
     private static Main instance;
+
     private Timer timer;
     private BackpackManager backpackManager;
     private ActionBarManager actionBarManager;
     private VoidSaver voidSaver;
     private GeneratorManager generatorManager;
+    private BlockInventoryManager blockInventoryManager;
+
     private YamlConfiguration config;
 
     public static List<Material> lockable = Arrays.asList(
@@ -114,6 +118,7 @@ public final class Main extends JavaPlugin {
         actionBarManager = new ActionBarManager();
         voidSaver = new VoidSaver();
         generatorManager = new GeneratorManager();
+        blockInventoryManager = new BlockInventoryManager();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
         if (config.contains("indev.isindev")) {
@@ -136,6 +141,7 @@ public final class Main extends JavaPlugin {
         timer.saveTime();
         backpackManager.save();
         generatorManager.save();
+        blockInventoryManager.save();
         Config.save();
     }
 
@@ -218,6 +224,10 @@ public final class Main extends JavaPlugin {
 
     public GeneratorManager getGeneratorManager() {
         return generatorManager;
+    }
+
+    public BlockInventoryManager getBlockInventoryManager() {
+        return blockInventoryManager;
     }
 
     public boolean isIndev() {
