@@ -18,6 +18,10 @@ public class TransferCommand extends PaidCommand {
     public void function(Player player, Command command, String label, String[] args) {
         Player target = Bukkit.getPlayer(args[0]);
         ItemStack item = player.getInventory().getItemInMainHand();
+        if (target.getInventory().firstEmpty() < 0) {
+            player.sendMessage(Main.getPrefix() + ChatColor.RED + "Es ist kein Platz im Inventar des Ziels!");
+            return;
+        }
         player.getInventory().clear(player.getInventory().getHeldItemSlot());
         target.getInventory().addItem(item);
         String itemTypeName = item.getType().name().toLowerCase().replace('_', ' ');

@@ -6,6 +6,7 @@ import de.quatschvirus.essentialvirus.utils.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +22,7 @@ public class DeathListener implements Listener {
         player.sendMessage("You died at: " + posString.substring(posString.indexOf(" ") + 1));
         Config.getConfig().set("deaths." + posString + ".player", player.getUniqueId().toString());
         Block gravestone = player.getLocation().getBlock();
-        Main.getInstance().getBlockInventoryManager().setInventory(new BlockInventory(gravestone, 45, ChatColor.DARK_GRAY + "Grabstein", event.getDrops().toArray(new ItemStack[]{}), player.getUniqueId().toString(), 1));
+        createBInv(gravestone, event, player);
         event.getDrops().clear();
         Config.getConfig().set("deaths." + posString + ".replace", gravestone.getType().name());
         Config.getConfig().set("deaths." + posString + ".xp", event.getDroppedExp());
@@ -34,5 +35,13 @@ public class DeathListener implements Listener {
         data.setGlowingText(true);
         data.setEditable(false);
         data.update();
+    }
+
+    private void createBInv(Block block, PlayerDeathEvent event, Player player) {
+        if (Main.getInstance().getBlockInventoryManager().getInventory(block) == null) {
+            Main.getInstance().getBlockInventoryManager().setInventory(new BlockInventory(block, 45, ChatColor.DARK_GRAY + "Grabstein", event.getDrops().toArray(new ItemStack[]{}), player.getUniqueId().toString(), 1));
+        } else {
+            createBInv(block.getRelative(BlockFace.UP), event, player);
+        }
     }
 }
