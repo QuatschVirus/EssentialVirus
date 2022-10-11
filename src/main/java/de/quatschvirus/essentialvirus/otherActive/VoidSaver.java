@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.otherActive;
 
 import de.quatschvirus.essentialvirus.economy.Money;
+
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

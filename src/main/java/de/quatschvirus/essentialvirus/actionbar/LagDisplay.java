@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.actionbar;
 
 import de.quatschvirus.essentialvirus.utils.Lag;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

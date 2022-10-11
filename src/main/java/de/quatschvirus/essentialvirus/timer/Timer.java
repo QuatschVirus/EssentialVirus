@@ -2,6 +2,7 @@ package de.quatschvirus.essentialvirus.timer;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 

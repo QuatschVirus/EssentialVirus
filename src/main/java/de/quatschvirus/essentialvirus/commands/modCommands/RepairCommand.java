@@ -4,6 +4,7 @@ import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.commands.basecommands.PlayerCommand;
 import de.quatschvirus.essentialvirus.economy.Money;
 import de.quatschvirus.essentialvirus.utils.ExperienceManager;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;

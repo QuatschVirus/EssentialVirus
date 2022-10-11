@@ -3,6 +3,7 @@ package de.quatschvirus.essentialvirus.commands.economy;
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
 import de.quatschvirus.essentialvirus.economy.Money;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

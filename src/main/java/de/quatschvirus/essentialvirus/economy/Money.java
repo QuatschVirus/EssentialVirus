@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.economy;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 

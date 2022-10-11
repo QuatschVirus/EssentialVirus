@@ -1,14 +1,13 @@
 package de.quatschvirus.essentialvirus.generator;
 
 import de.quatschvirus.essentialvirus.Main;
-import de.quatschvirus.essentialvirus.utils.PosSerial;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

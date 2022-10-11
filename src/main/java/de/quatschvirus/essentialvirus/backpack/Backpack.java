@@ -2,6 +2,7 @@ package de.quatschvirus.essentialvirus.backpack;
 
 import de.quatschvirus.essentialvirus.utils.Base64;
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;

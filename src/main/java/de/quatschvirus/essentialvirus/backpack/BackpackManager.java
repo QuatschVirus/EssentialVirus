@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.backpack;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.IOException;

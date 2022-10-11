@@ -2,6 +2,7 @@ package de.quatschvirus.essentialvirus.commands;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -12,7 +13,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

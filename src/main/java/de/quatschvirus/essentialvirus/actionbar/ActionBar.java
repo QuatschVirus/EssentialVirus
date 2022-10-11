@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.actionbar;
 
 import de.quatschvirus.essentialvirus.Main;
+
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;

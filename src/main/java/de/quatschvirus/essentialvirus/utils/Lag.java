@@ -1,6 +1,6 @@
 package de.quatschvirus.essentialvirus.utils;
 
-public class Lag implements Runnable{
+public class Lag implements Runnable {
     /*
     This code was written entirely by LazyLemons on Bukkit Forums
     Thread URL: https://bukkit.org/threads/get-server-tps.143410/

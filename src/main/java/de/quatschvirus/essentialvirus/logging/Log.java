@@ -2,6 +2,7 @@ package de.quatschvirus.essentialvirus.logging;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.generator;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

@@ -3,6 +3,7 @@ package de.quatschvirus.essentialvirus.listeners;
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.types.Change;
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;

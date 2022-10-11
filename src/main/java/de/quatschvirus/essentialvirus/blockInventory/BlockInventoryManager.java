@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.blockInventory;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.block.Block;
 import org.bukkit.inventory.Inventory;
 

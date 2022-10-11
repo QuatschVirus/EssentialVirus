@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.logging;
 
 import de.quatschvirus.essentialvirus.utils.Config;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

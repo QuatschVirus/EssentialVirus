@@ -4,9 +4,7 @@ import de.quatschvirus.essentialvirus.actionbar.ActionBarManager;
 import de.quatschvirus.essentialvirus.backpack.BackpackManager;
 import de.quatschvirus.essentialvirus.blockInventory.BlockInventoryManager;
 import de.quatschvirus.essentialvirus.commands.*;
-import de.quatschvirus.essentialvirus.commands.economy.BalanceCommand;
-import de.quatschvirus.essentialvirus.commands.economy.DepositCommand;
-import de.quatschvirus.essentialvirus.commands.economy.PayCommand;
+import de.quatschvirus.essentialvirus.commands.economy.*;
 import de.quatschvirus.essentialvirus.commands.modCommands.*;
 import de.quatschvirus.essentialvirus.generator.GeneratorManager;
 import de.quatschvirus.essentialvirus.listeners.*;
@@ -18,6 +16,7 @@ import de.quatschvirus.essentialvirus.types.Change;
 import de.quatschvirus.essentialvirus.utils.Config;
 import de.quatschvirus.essentialvirus.utils.Lag;
 import de.quatschvirus.essentialvirus.utils.NoTabComplete;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

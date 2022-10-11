@@ -1,6 +1,7 @@
 package de.quatschvirus.essentialvirus.actionbar;
 
 import de.quatschvirus.essentialvirus.Main;
+
 import org.bukkit.entity.Player;
 
 public class TimerDisplay extends Display {

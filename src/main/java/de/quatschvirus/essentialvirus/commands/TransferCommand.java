@@ -2,6 +2,7 @@ package de.quatschvirus.essentialvirus.commands;
 
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.commands.basecommands.PaidCommand;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

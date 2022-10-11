@@ -1,8 +1,8 @@
 package de.quatschvirus.essentialvirus.commands;
 
 import de.quatschvirus.essentialvirus.Main;
-
 import de.quatschvirus.essentialvirus.backpack.Backpack;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

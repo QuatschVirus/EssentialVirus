@@ -5,6 +5,7 @@ import de.quatschvirus.essentialvirus.commands.basecommands.PlayerCommand;
 import de.quatschvirus.essentialvirus.utils.Config;
 import de.quatschvirus.essentialvirus.economy.Money;
 import de.quatschvirus.essentialvirus.utils.PosSerial;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
