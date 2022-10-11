@@ -7,6 +7,6 @@ import org.bukkit.entity.Player;
 public class BalanceDisplay extends Display {
     @Override
     public String display(Player player) {
-        return ChatColor.GREEN + "Kontostand: " + Money.get(player);
+        return ChatColor.GREEN + "Kontostand: " + Money.get(player) + "€";
     }
 }
