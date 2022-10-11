@@ -9,14 +9,14 @@ public class Money {
     private static final YamlConfiguration config = Config.getConfig();
 
     public static int get(Player player) {
-        return Integer.parseInt(config.get("balance." + player.getUniqueId()).toString());
+        return config.getInt("balance." + player.getUniqueId());
     }
 
     public static void add(Player player, int amount) {
-        config.set("balance." + player.getUniqueId(), Integer.parseInt(config.get("balance." + player.getUniqueId()).toString()) + amount);
+        config.set("balance." + player.getUniqueId(), config.getInt("balance." + player.getUniqueId()) + amount);
     }
 
     public static void remove(Player player, int amount) {
-        config.set("balance." + player.getUniqueId(), Integer.parseInt(config.get("balance." + player.getUniqueId()).toString()) - amount);
+        config.set("balance." + player.getUniqueId(), config.getInt("balance." + player.getUniqueId()) - amount);
     }
 }
