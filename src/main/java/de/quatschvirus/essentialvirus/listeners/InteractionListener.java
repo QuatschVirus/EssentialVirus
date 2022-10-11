@@ -10,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -85,6 +87,10 @@ public class InteractionListener implements Listener {
                         Config.getConfig().set("deaths." + posString + ".xp", 0);
                     }
                 }
+            }
+        } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
+            if (player.getInventory().getItemInMainHand().getType() == Material.GLOW_BERRIES) {
+                player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 600, 1, false, false));
             }
         }
     }
