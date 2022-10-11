@@ -135,8 +135,6 @@ public final class Main extends JavaPlugin {
         commandRegistration();
 
         generatorManager.run();
-
-        Bukkit.getLogger().fine("Plugin enabled");
     }
 
     @Override
@@ -201,6 +199,11 @@ public final class Main extends JavaPlugin {
             getCommand("unlock").setTabCompleter(new NoTabComplete());
             getCommand("blocktp").setExecutor(new BlockTpCommand());
             getCommand("log").setExecutor(new LogCommand());
+            getCommand("debugstick").setExecutor(new DebugStickCommand());
+            getCommand("debugstick").setTabCompleter(new NoTabComplete());
+            getCommand("money").setExecutor(new MoneyCommand());
+            getCommand("repair").setExecutor(new RepairCommand());
+            getCommand("repair").setTabCompleter(new NoTabComplete());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

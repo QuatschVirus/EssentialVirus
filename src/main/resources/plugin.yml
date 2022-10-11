@@ -72,3 +72,16 @@ commands:
     description: Blockiert jemanden von der Nutzung des PTP-Befehls
   log:
     description: Add/remove a player from Watchlog
+#  world:
+#    description: Wechsle Welten
+#    aliases:
+#      - w
+#      - wrld
+  debugstick:
+    description: Gebe dir einen Debug Stick zum Bauen
+    aliases:
+      - ds
+  money:
+    description: Verwalte das Spielergeld
+  repair:
+    description: Repariert den Gegenstand in deiner Haupthand mit deiner XP. Kostet 5€, wenn der Gegenstand keine Mending-Verzauberung hat.
