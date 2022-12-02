@@ -33,16 +33,12 @@ import java.util.List;
 public final class Main extends JavaPlugin {
 
     private static final Change[] changes = new Change[]{
-            new Change("Grabsteine", new String[]{
-                    "Items und XP werden im Todeesfall begraben",
-                    "Interagieren mit dem Grabstein gibt Zugang zu Items und gewährt begrabene XP",
-                    "Leere Grabsteine verschwinden von alleine",
-                    "Grabsteine können nur vom Besitzer abgebaut werden"
-            }),
-            new Change("Todespunkt", new String[]{
-                    "Koordinaten deines Todesstandorts werden dir per Chat gesendet"
+            new Change("Rework der wandernden Händler", new String[]{
+                    "Sieh es die selbst an",
+                    "25% Chance auf einen Mystischen Händler",
+                    "Gerne mehr Trade-Ideen!"
             })
-            };
+    };
 
     private static Main instance;
 
@@ -157,6 +153,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockPlaceListener(), this);
         pluginManager.registerEvents(new InteractionListener(), this);
         pluginManager.registerEvents(new InventoryCloseListener(), this);
+        pluginManager.registerEvents(new CreatureSpawnListener(), this);
 
         pluginManager.registerEvents(new LogListeners(), this);
 
