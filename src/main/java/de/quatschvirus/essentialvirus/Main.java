@@ -203,6 +203,8 @@ public final class Main extends JavaPlugin {
             getCommand("money").setExecutor(new MoneyCommand());
             getCommand("repair").setExecutor(new RepairCommand());
             getCommand("repair").setTabCompleter(new NoTabComplete());
+            getCommand("scavenge").setExecutor(new ScavengeCommand());
+            getCommand("scavenge").setTabCompleter(new NoTabComplete());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

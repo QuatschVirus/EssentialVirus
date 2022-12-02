@@ -85,3 +85,5 @@ commands:
     description: Verwalte das Spielergeld
   repair:
     description: Repariert den Gegenstand in deiner Haupthand mit deiner XP. Kostet 5€, wenn der Gegenstand keine Mending-Verzauberung hat.
+  scavenge:
+    description: Fische im Aether nach Loot. Kostet 5€
