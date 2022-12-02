@@ -28,8 +28,8 @@ commands:
     description: Küdigt das Herunterfahren des Servers an.
     permission: essentialvirus.commands.announceshutdown
     permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
-  #pos:
-  #  description: Verwalten von Markern, um Positionen wiederzufinden.
+  pos:
+    description: Verwalten von Markern, um Positionen wiederzufinden.
   #  permission: essentialvirus.commands.pos
   #  permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
   playerteleport:

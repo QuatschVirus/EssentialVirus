@@ -11,6 +11,7 @@ import de.quatschvirus.essentialvirus.listeners.*;
 import de.quatschvirus.essentialvirus.logging.Log;
 import de.quatschvirus.essentialvirus.logging.LogListeners;
 import de.quatschvirus.essentialvirus.otherActive.VoidSaver;
+import de.quatschvirus.essentialvirus.pos.PositionManager;
 import de.quatschvirus.essentialvirus.timer.Timer;
 import de.quatschvirus.essentialvirus.types.Change;
 import de.quatschvirus.essentialvirus.utils.Config;
@@ -48,6 +49,7 @@ public final class Main extends JavaPlugin {
     private VoidSaver voidSaver;
     private GeneratorManager generatorManager;
     private BlockInventoryManager blockInventoryManager;
+    private PositionManager positionManager;
 
     private YamlConfiguration config;
 
@@ -118,6 +120,7 @@ public final class Main extends JavaPlugin {
         voidSaver = new VoidSaver();
         generatorManager = new GeneratorManager();
         blockInventoryManager = new BlockInventoryManager();
+        positionManager = new PositionManager();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
         if (config.contains("indev.isindev")) {
@@ -139,6 +142,7 @@ public final class Main extends JavaPlugin {
         backpackManager.save();
         generatorManager.save();
         blockInventoryManager.save();
+        positionManager.save();
         Config.save();
     }
 
@@ -179,7 +183,7 @@ public final class Main extends JavaPlugin {
             getCommand("slime").setExecutor(new SlimeCommand());
             getCommand("slime").setTabCompleter(new NoTabComplete());
             getCommand("pay").setExecutor(new PayCommand());
-            //getCommand("pos").setExecutor(new PosCommand());
+            getCommand("pos").setExecutor(new PosCommand());
             getCommand("api").setExecutor(new APICommand());
             getCommand("api").setTabCompleter(new NoTabComplete());
             getCommand("display").setExecutor(new DisplayCommand());
@@ -233,6 +237,10 @@ public final class Main extends JavaPlugin {
 
     public BlockInventoryManager getBlockInventoryManager() {
         return blockInventoryManager;
+    }
+
+    public PositionManager getPositionManager() {
+        return positionManager;
     }
 
     public boolean isIndev() {
