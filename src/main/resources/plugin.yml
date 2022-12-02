@@ -33,25 +33,25 @@ commands:
   #  permission: essentialvirus.commands.pos
   #  permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
   playerteleport:
-    description: Bearbeiter teleport-Befehl für Nicht-OP's. Ein Teleport kostet den Spieler, der den Befehl ausführt, einen Smaragd
+    description: Bearbeiteter teleport-Befehl für Nicht-OP's. Ein Teleport kostet den Spieler, der den Befehl ausführt, 1€
     #permission: essentialvirus.commands.teleport
     #permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
     aliases:
       - ptp
   transfer:
-    description: Übertrage die Items, die du gerade in deiner Hand hast, an einen Spieler. Kostet dich einen Smaragd
+    description: Übertrage die Items, die du gerade in deiner Hand hast, an einen Spieler. Kostet 1€
     #permission: essentialvirus.commands.transfer
     #permission-message: Du hast nicht die benötigten Berechtigungen, um das zu tun!
   balance:
     description: Zeigt dir deinen Kontostand an
   pay:
-    description: Überweise die Geldmenge an einen Spieler
+    description: Überweise eine Geldmenge an einen Spieler
   deposit:
-    description: Zahle den Betrag auf dein Konto ein
+    description: Zahle einen Betrag an Smaragden auf dein Konto ein
   slime:
     description: Überprüft, ob der Chunk, in dem du dich befindest, ein Slimechunk ist
   api:
-    description: Eine Sammlungvon api-Befehlen. Kann nur von einem Admin ausgeführt werden.
+    description: Eine Sammlungvon api-Befehlen. Kann nur von einem Admin bzw. der Konsole ausgeführt werden.
   display:
     description: Zum An-/Ausschalten des Displays.
   indev:
@@ -63,7 +63,7 @@ commands:
     aliases:
       - vsx
   generator:
-    description: Kaufe einen Generator
+    description: Kaufe einen Generator für 50€
   lock:
     description: Sperre eine Kiste oder ähnliches
   unlock:
@@ -72,11 +72,6 @@ commands:
     description: Blockiert jemanden von der Nutzung des PTP-Befehls
   log:
     description: Add/remove a player from Watchlog
-#  world:
-#    description: Wechsle Welten
-#    aliases:
-#      - w
-#      - wrld
   debugstick:
     description: Gebe dir einen Debug Stick zum Bauen
     aliases:

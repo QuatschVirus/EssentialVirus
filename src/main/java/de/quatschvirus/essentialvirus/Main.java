@@ -167,7 +167,6 @@ public final class Main extends JavaPlugin {
     @SuppressWarnings("ConstantConditions")
     private void commandRegistration() {
         try {
-            //getCommand("date").setExecutor(new DateCommand());
             getCommand("backpack").setExecutor(new BackpackCommand());
             getCommand("announceshutdown").setTabCompleter(new NoTabComplete());
             getCommand("timer").setExecutor(new TimerCommand());
