@@ -11,10 +11,12 @@ import de.quatschvirus.essentialvirus.listeners.*;
 import de.quatschvirus.essentialvirus.logging.Log;
 import de.quatschvirus.essentialvirus.logging.LogListeners;
 import de.quatschvirus.essentialvirus.otherActive.VoidSaver;
+import de.quatschvirus.essentialvirus.playerData.PlayerDataHandler;
 import de.quatschvirus.essentialvirus.pos.PositionManager;
 import de.quatschvirus.essentialvirus.timer.Timer;
 import de.quatschvirus.essentialvirus.types.Change;
 import de.quatschvirus.essentialvirus.utils.Config;
+import de.quatschvirus.essentialvirus.utils.IntConverter;
 import de.quatschvirus.essentialvirus.utils.Lag;
 import de.quatschvirus.essentialvirus.utils.NoTabComplete;
 
@@ -44,12 +46,13 @@ public final class Main extends JavaPlugin {
     private static Main instance;
 
     private Timer timer;
-    private BackpackManager backpackManager;
-    private ActionBarManager actionBarManager;
+    private BackpackManager bpM;
+    private ActionBarManager abM;
     private VoidSaver voidSaver;
-    private GeneratorManager generatorManager;
-    private BlockInventoryManager blockInventoryManager;
-    private PositionManager positionManager;
+    private GeneratorManager gM;
+    private BlockInventoryManager biM;
+    private PositionManager pM;
+    private PlayerDataHandler pdH;
 
     private YamlConfiguration config;
 
@@ -115,12 +118,13 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         config = Config.getConfig();
         timer = new Timer();
-        backpackManager = new BackpackManager();
-        actionBarManager = new ActionBarManager();
+        bpM = new BackpackManager();
+        abM = new ActionBarManager();
         voidSaver = new VoidSaver();
-        generatorManager = new GeneratorManager();
-        blockInventoryManager = new BlockInventoryManager();
-        positionManager = new PositionManager();
+        gM = new GeneratorManager();
+        biM = new BlockInventoryManager();
+        pM = new PositionManager();
+        pdH = new PlayerDataHandler();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
         if (config.contains("indev.isindev")) {
@@ -132,17 +136,19 @@ public final class Main extends JavaPlugin {
         listenerRegistration();
         commandRegistration();
 
-        generatorManager.run();
+        IntConverter.init();
+
+        gM.run();
     }
 
     @Override
     public void onDisable() {
         config.set("indev.isindev", indev);
         timer.saveTime();
-        backpackManager.save();
-        generatorManager.save();
-        blockInventoryManager.save();
-        positionManager.save();
+        bpM.save();
+        gM.save();
+        biM.save();
+        pM.save();
         Config.save();
     }
 
@@ -219,11 +225,11 @@ public final class Main extends JavaPlugin {
     }
 
     public BackpackManager getBackpackManager() {
-        return backpackManager;
+        return bpM;
     }
 
     public ActionBarManager getActionBarManager() {
-        return actionBarManager;
+        return abM;
     }
 
     public VoidSaver getVoidSaver() {
@@ -231,15 +237,19 @@ public final class Main extends JavaPlugin {
     }
 
     public GeneratorManager getGeneratorManager() {
-        return generatorManager;
+        return gM;
     }
 
     public BlockInventoryManager getBlockInventoryManager() {
-        return blockInventoryManager;
+        return biM;
     }
 
     public PositionManager getPositionManager() {
-        return positionManager;
+        return pM;
+    }
+
+    public PlayerDataHandler getPlayerDataHandler() {
+        return pdH;
     }
 
     public boolean isIndev() {
