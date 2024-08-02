@@ -25,6 +25,16 @@ public class BlockInventoryManager {
         return inventories;
     }
 
+    public ArrayList<BlockInventory> getInventories(String owner) {
+        ArrayList<BlockInventory> invs = new ArrayList<>();
+        for (BlockInventory inventory : inventories) {
+            if (inventory.getOwner().equals(owner)) {
+                invs.add(inventory);
+            }
+        }
+        return invs;
+    }
+
     public BlockInventory getInventory(Block block) {
         for (BlockInventory inventory : inventories) {
             if (inventory.getBlock().equals(block)) {
