@@ -6,10 +6,13 @@ import de.quatschvirus.essentialvirus.utils.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.*;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityInteractEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -71,7 +74,7 @@ public class InteractionListener implements Listener {
                         }
                     }
                 }
-                if (Main.getInstance().getBlockInventoryManager().getInventory(block) != null) {
+                else if (Main.getInstance().getBlockInventoryManager().getInventory(block) != null) {
                     if (Main.getInstance().getBlockInventoryManager().getInventory(block).getOwner() != null) {
                         if (Objects.equals(Main.getInstance().getBlockInventoryManager().getInventory(block).getOwner(), player.getUniqueId().toString())) {
                             player.openInventory(Main.getInstance().getBlockInventoryManager().getInventory(block).getInventory());
@@ -80,7 +83,7 @@ public class InteractionListener implements Listener {
                         player.openInventory(Main.getInstance().getBlockInventoryManager().getInventory(block).getInventory());
                     }
                 }
-                if (block.getType() == Material.SPRUCE_SIGN) {
+                else if (block.getType() == Material.SPRUCE_SIGN) {
                     Sign state = (Sign) block.getState();
                     if (state.getLine(0).startsWith(ChatColor.WHITE.toString()) && state.getLine(1).startsWith(ChatColor.RED.toString())) {
                         String posString = state.getWorld().getName() + " " + state.getX() + " " + state.getY() + " " + state.getZ();
@@ -88,10 +91,36 @@ public class InteractionListener implements Listener {
                         Config.getConfig().set("deaths." + posString + ".xp", 0);
                     }
                 }
+                else if (player.isSneaking() && !player.getPassengers().isEmpty()) {
+                    if (player.getPassengers().get(0) instanceof LivingEntity) {
+                        Block b = block.getRelative(event.getBlockFace());
+                        LivingEntity entity = (LivingEntity) player.getPassengers().get(0);
+                        if (b.isPassable()) {
+                            player.removePassenger(entity);
+                            entity.teleport(b.getLocation().add(0.5, 0.2, 0.5));
+                        }
+                    }
+                }
             }
         } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
             if (player.getInventory().getItemInMainHand().getType() == Material.GLOW_BERRIES) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 600, 1, false, false));
+            }
+        }
+    }
+
+    @EventHandler
+    public void OnEntityInteraction(PlayerInteractEntityEvent event) {
+        Player player = event.getPlayer();
+        if (player.isSneaking()) {
+            if (event.getRightClicked() instanceof LivingEntity) {
+                LivingEntity entity = (LivingEntity) event.getRightClicked();
+                if (player.getPassengers().isEmpty()) {
+                    if (entity.getBoundingBox().getVolume() <= 2.3) {
+                        player.addPassenger(entity);
+                        event.setCancelled(true);
+                    }
+                }
             }
         }
     }

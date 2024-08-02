@@ -40,6 +40,11 @@ public final class Main extends JavaPlugin {
                     "Sieh es die selbst an",
                     "25% Chance auf einen Mystischen Händler",
                     "Gerne mehr Trade-Ideen!"
+            }),
+            new Change("Erleichterter Entity-Transport", new String[]{
+                    "Wirf ein Ei auf ein Lebewesen",
+                    "Es gibt eine Chance dass es zu einem Spawn-Ei wird",
+                    "Trage Lebewesen, indem du sie beim Schleichen rechts-klickst"
             })
     };
 
@@ -164,6 +169,8 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new InteractionListener(), this);
         pluginManager.registerEvents(new InventoryCloseListener(), this);
         pluginManager.registerEvents(new CreatureSpawnListener(), this);
+        pluginManager.registerEvents(new ProjectileHitListener(), this);
+        pluginManager.registerEvents(new EntityDamageListener(), this);
 
         pluginManager.registerEvents(new LogListeners(), this);
 
