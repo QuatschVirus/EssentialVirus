@@ -82,3 +82,5 @@ commands:
     description: Repariert den Gegenstand in deiner Haupthand mit deiner XP. Kostet 5€, wenn der Gegenstand keine Mending-Verzauberung hat.
   scavenge:
     description: Fische im Aether nach Loot. Kostet 5€
+  enchant:
+    description: Funktional identisch zum vanilla enchant-Befehl. Unterstützt alle Enchantments (auch custom)
