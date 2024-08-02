@@ -131,6 +131,7 @@ public final class Main extends JavaPlugin {
         pM = new PositionManager();
         pdH = new PlayerDataHandler();
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, Config::save, 18000L, 18000L);
 
         if (config.contains("indev.isindev")) {
             indev = config.getBoolean("indev.isindev");
