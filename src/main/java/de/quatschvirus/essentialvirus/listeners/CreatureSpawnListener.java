@@ -1,7 +1,7 @@
 package de.quatschvirus.essentialvirus.listeners;
 
-import de.quatschvirus.essentialvirus.custom_materials.CustomItemStack;
-import de.quatschvirus.essentialvirus.custom_materials.CustomMaterial;
+import de.quatschvirus.essentialvirus.custom.materials.CustomItemStack;
+import de.quatschvirus.essentialvirus.custom.materials.CustomMaterial;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

@@ -42,10 +42,9 @@ public class APICommand implements CommandExecutor {
                         new BukkitRunnable() {
                             public void run() {
                                 for (Player player : Bukkit.getOnlinePlayers()) {
-                                    player.kickPlayer("Das Plugin wird geupdated. Bitte warte ca. 5 Sekunden, bevor du den Server wieder betrittst");
+                                    player.kickPlayer("Das Plugin wird geupdated. Bitte warte ca. 30 Sekunden, bevor du den Server wieder betrittst");
                                 }
-
-                                Bukkit.reload();
+                                Bukkit.getServer().shutdown();
                             }
                         }.runTaskLater(Main.getInstance(), delay);
                     } else {

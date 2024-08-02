@@ -1,4 +1,4 @@
-package de.quatschvirus.essentialvirus.custom_materials;
+package de.quatschvirus.essentialvirus.custom.materials;
 
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;

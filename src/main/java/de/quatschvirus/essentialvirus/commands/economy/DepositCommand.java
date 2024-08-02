@@ -37,7 +37,9 @@ public class DepositCommand implements CommandExecutor {
             return true;
         }
         player.getInventory().remove(Material.EMERALD);
-        player.getInventory().addItem(new ItemStack(Material.EMERALD, emeraldCount - amount));
+        if (emeraldCount != amount) {
+            player.getInventory().addItem(new ItemStack(Material.EMERALD, emeraldCount - amount));
+        }
         Money.add(player, amount);
         sender.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du hast " + amount + "€ eingezahlt");
         return false;

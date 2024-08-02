@@ -19,23 +19,25 @@ public class PositionManager {
     private final ArrayList<Position> positions = new ArrayList<>();
 
     public PositionManager() {
-        List<?> pos_raw = config.getList("pos");
-        if (pos_raw != null) {
-            for (Object pos : pos_raw) {
-                if (pos instanceof HashMap) {
-                    if (((HashMap<?, ?>) pos).keySet().toArray()[0] instanceof String) {
-                        try {
-                            //noinspection unchecked
-                            positions.add(new Position((HashMap<String, Object>) pos));
-                        } catch (IllegalArgumentException e) {
-                            Bukkit.getLogger().warning(Main.getPrefix() + "Postion ignored (index: " + pos_raw.indexOf(pos) + ")");
+        if (config.contains("pos")) {
+            List<?> pos_raw = config.getList("pos");
+            if (pos_raw != null) {
+                for (Object pos : pos_raw) {
+                    if (pos instanceof HashMap) {
+                        if (((HashMap<?, ?>) pos).keySet().toArray()[0] instanceof String) {
+                            try {
+                                //noinspection unchecked
+                                positions.add(new Position((HashMap<String, Object>) pos));
+                            } catch (IllegalArgumentException e) {
+                                Bukkit.getLogger().warning(Main.getPrefix() + "Postion ignored (index: " + pos_raw.indexOf(pos) + ")");
+                            }
                         }
                     }
                 }
+            } else {
+                Bukkit.getLogger().severe(Main.getPrefix() + "Positions are not stored as List");
+                throw new IllegalArgumentException();
             }
-        } else {
-            Bukkit.getLogger().severe(Main.getPrefix() + "Positions are not stored as List");
-            throw new IllegalArgumentException();
         }
     }
 
