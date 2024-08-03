@@ -15,16 +15,11 @@ import de.quatschvirus.essentialvirus.playerData.PlayerDataHandler;
 import de.quatschvirus.essentialvirus.pos.PositionManager;
 import de.quatschvirus.essentialvirus.timer.Timer;
 import de.quatschvirus.essentialvirus.types.Change;
-import de.quatschvirus.essentialvirus.utils.Config;
-import de.quatschvirus.essentialvirus.utils.IntConverter;
-import de.quatschvirus.essentialvirus.utils.Lag;
-import de.quatschvirus.essentialvirus.utils.NoTabComplete;
+import de.quatschvirus.essentialvirus.utils.*;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,6 +40,10 @@ public final class Main extends JavaPlugin {
                     "Wirf ein Ei auf ein Lebewesen",
                     "Es gibt eine Chance dass es zu einem Spawn-Ei wird",
                     "Trage Lebewesen, indem du sie beim Schleichen rechts-klickst"
+            }),
+            new Change("Setz dich!", new String[]{
+                    "Man kann sich jetzt auf Stufen und Treppen setzen",
+                    "Probier's einfach aus!"
             })
     };
 
@@ -145,6 +144,14 @@ public final class Main extends JavaPlugin {
         IntConverter.init();
 
         gM.run();
+
+        for (World w : getServer().getWorlds()) {
+            for (ArmorStand a : w.getEntitiesByClass(ArmorStand.class)) {
+                if (a.getScoreboardTags().contains(ScoreboardTags.Seat)) {
+                    a.remove();
+                }
+            }
+        }
     }
 
     @Override
@@ -172,6 +179,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new CreatureSpawnListener(), this);
         pluginManager.registerEvents(new ProjectileHitListener(), this);
         pluginManager.registerEvents(new EntityDamageListener(), this);
+        pluginManager.registerEvents(new DismountListener(), this);
 
         pluginManager.registerEvents(new LogListeners(), this);
 

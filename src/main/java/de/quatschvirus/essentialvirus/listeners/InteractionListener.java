@@ -3,22 +3,27 @@ package de.quatschvirus.essentialvirus.listeners;
 import de.quatschvirus.essentialvirus.Main;
 import de.quatschvirus.essentialvirus.utils.Config;
 
+import de.quatschvirus.essentialvirus.utils.Directions;
+import de.quatschvirus.essentialvirus.utils.ScoreboardTags;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.*;
+import org.bukkit.block.data.Bisected;
+import org.bukkit.block.data.type.Stairs;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class InteractionListener implements Listener {
     @EventHandler
@@ -42,8 +47,7 @@ public class InteractionListener implements Listener {
                 if (Main.getInstance().getGeneratorManager().check(event.getClickedBlock())) {
                     Main.getInstance().getGeneratorManager().destroy(event.getClickedBlock());
                 }
-            }
-            if (event.hasBlock()) {
+            } else {
                 Block block = event.getClickedBlock();
                 //noinspection ConstantConditions
                 if (Main.lockable.contains(block.getType())) {
@@ -91,6 +95,51 @@ public class InteractionListener implements Listener {
                         Config.getConfig().set("deaths." + posString + ".xp", 0);
                     }
                 }
+                else if (Tag.STAIRS.isTagged(block.getType())) {
+                    Stairs s = (Stairs) block.getState().getData();
+                    if (s.getHalf() == Bisected.Half.TOP) return;
+                    Location l = block.getLocation().add(0.5, 0.5, 0.5);
+                    if (l.getWorld() == null) return;
+                    ArmorStand stand = l.getWorld().spawn(l, ArmorStand.class);
+                    stand.addScoreboardTag(ScoreboardTags.Seat);
+                    stand.setRotation(Directions.ConvertStairsToFaceRotation(s), 0);
+                    stand.setMarker(true);
+                    stand.setSmall(true);
+                    stand.setSilent(true);
+                    stand.setVisible(false);
+                    stand.setPersistent(true);
+                    stand.setCollidable(false);
+                    stand.setGravity(false);
+                    stand.setArms(false);
+                    stand.setBasePlate(false);
+                    stand.setInvulnerable(true);
+                    stand.setAI(false);
+                    stand.eject();
+
+                    player.leaveVehicle();
+                    stand.addPassenger(player);
+                } else if (Tag.SLABS.isTagged(block.getType())) {
+                    Location l = block.getLocation().add(0.5, 0.5, 0.5);
+                    if (l.getWorld() == null) return;
+                    ArmorStand stand = l.getWorld().spawn(l, ArmorStand.class);
+                    stand.addScoreboardTag(ScoreboardTags.Seat);
+                    stand.setRotation(Directions.SnapToCardinal(player.getLocation().getYaw() + 180F), 0);
+                    stand.setMarker(true);
+                    stand.setSmall(true);
+                    stand.setSilent(true);
+                    stand.setVisible(false);
+                    stand.setPersistent(true);
+                    stand.setCollidable(false);
+                    stand.setGravity(false);
+                    stand.setArms(false);
+                    stand.setBasePlate(false);
+                    stand.setInvulnerable(true);
+                    stand.setAI(false);
+                    stand.eject();
+
+                    player.leaveVehicle();
+                    stand.addPassenger(player);
+                }
                 else if (player.isSneaking() && !player.getPassengers().isEmpty()) {
                     if (player.getPassengers().get(0) instanceof LivingEntity) {
                         Block b = block.getRelative(event.getBlockFace());
@@ -102,7 +151,9 @@ public class InteractionListener implements Listener {
                     }
                 }
             }
-        } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
+        }
+        // TODO: Move to PlayerItemConsumeEvent
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
             if (player.getInventory().getItemInMainHand().getType() == Material.GLOW_BERRIES) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 600, 1, false, false));
             }
