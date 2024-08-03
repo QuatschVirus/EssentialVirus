@@ -22,6 +22,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -32,7 +33,8 @@ public class InteractionListener implements Listener {
     public void onInteraction (PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.hasBlock()) {
-            if (player.getInventory().getItem(event.getHand()) != null) {
+            ItemStack item = player.getInventory().getItem(event.getHand());
+            if (item != null) {
                 if (Arrays.asList(
                     Material.WOODEN_SHOVEL,
                     Material.STONE_SHOVEL,
@@ -46,7 +48,7 @@ public class InteractionListener implements Listener {
                     Material.GOLDEN_PICKAXE,
                     Material.DIAMOND_PICKAXE,
                     Material.NETHERITE_PICKAXE
-                ).contains(player.getInventory().getItem(event.getHand()).getType())) {
+                ).contains(item.getType())) {
                     if (Main.getInstance().getGeneratorManager().check(event.getClickedBlock())) {
                         Main.getInstance().getGeneratorManager().destroy(event.getClickedBlock());
                     }
