@@ -32,23 +32,24 @@ public class InteractionListener implements Listener {
     public void onInteraction (PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.hasBlock()) {
-            if (Arrays.asList(
-                Material.WOODEN_SHOVEL,
-                Material.STONE_SHOVEL,
-                Material.IRON_SHOVEL,
-                Material.GOLDEN_SHOVEL,
-                Material.DIAMOND_SHOVEL,
-                Material.NETHERITE_SHOVEL,
-                Material.WOODEN_PICKAXE,
-                Material.STONE_PICKAXE,
-                Material.IRON_PICKAXE,
-                Material.GOLDEN_PICKAXE,
-                Material.DIAMOND_PICKAXE,
-                Material.NETHERITE_PICKAXE
-            ).contains(player.getInventory().getItem(event.getHand()).getType())) {
-                if (Main.getInstance().getGeneratorManager().check(event.getClickedBlock())) {
-                    Main.getInstance().getGeneratorManager().destroy(event.getClickedBlock());
-                }
+            if (player.getInventory().getItem(event.getHand()) != null) {
+                if (Arrays.asList(
+                    Material.WOODEN_SHOVEL,
+                    Material.STONE_SHOVEL,
+                    Material.IRON_SHOVEL,
+                    Material.GOLDEN_SHOVEL,
+                    Material.DIAMOND_SHOVEL,
+                    Material.NETHERITE_SHOVEL,
+                    Material.WOODEN_PICKAXE,
+                    Material.STONE_PICKAXE,
+                    Material.IRON_PICKAXE,
+                    Material.GOLDEN_PICKAXE,
+                    Material.DIAMOND_PICKAXE,
+                    Material.NETHERITE_PICKAXE
+                ).contains(player.getInventory().getItem(event.getHand()).getType())) {
+                    if (Main.getInstance().getGeneratorManager().check(event.getClickedBlock())) {
+                        Main.getInstance().getGeneratorManager().destroy(event.getClickedBlock());
+                    }
             } else {
                 Block block = event.getClickedBlock();
                 //noinspection ConstantConditions
