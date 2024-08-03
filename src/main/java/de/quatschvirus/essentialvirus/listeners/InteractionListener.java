@@ -50,6 +50,7 @@ public class InteractionListener implements Listener {
                     if (Main.getInstance().getGeneratorManager().check(event.getClickedBlock())) {
                         Main.getInstance().getGeneratorManager().destroy(event.getClickedBlock());
                     }
+                }
             } else {
                 Block block = event.getClickedBlock();
                 //noinspection ConstantConditions
