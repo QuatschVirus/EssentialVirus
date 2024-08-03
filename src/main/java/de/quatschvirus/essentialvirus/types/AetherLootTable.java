@@ -18,7 +18,7 @@ public class AetherLootTable implements LootTable {
     public Collection<ItemStack> populateLoot(Random random, LootContext context) {
         ItemStack item = null;
         double roll = random.nextDouble();
-        double loot = context.getLootingModifier() + 1;
+        double loot = context.getLuck() + 1;
         int dA = random.nextInt(16);
         if (roll <= 0.0000001 * loot) {
             item = new ItemStack(Material.DRAGON_EGG);
