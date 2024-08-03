@@ -228,7 +228,9 @@ public final class Main extends JavaPlugin {
             getCommand("scavenge").setExecutor(new ScavengeCommand());
             getCommand("scavenge").setTabCompleter(new NoTabComplete());
         } catch (NullPointerException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
+            // More robust logging? Nah, just dont be stoopid
         }
     }
 

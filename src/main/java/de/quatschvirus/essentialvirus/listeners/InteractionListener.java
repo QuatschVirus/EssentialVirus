@@ -12,6 +12,8 @@ import org.bukkit.Tag;
 import org.bukkit.block.*;
 import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.type.Stairs;
+import org.bukkit.block.sign.Side;
+import org.bukkit.block.sign.SignSide;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -89,7 +91,8 @@ public class InteractionListener implements Listener {
                 }
                 else if (block.getType() == Material.SPRUCE_SIGN) {
                     Sign state = (Sign) block.getState();
-                    if (state.getLine(0).startsWith(ChatColor.WHITE.toString()) && state.getLine(1).startsWith(ChatColor.RED.toString())) {
+                    SignSide side = state.getSide(Side.FRONT);
+                    if (side.getLine(0).startsWith(ChatColor.WHITE.toString()) && side.getLine(1).startsWith(ChatColor.RED.toString())) { // TODO: Rework all of this bullshit and similar to PersistentDataContainer shizz
                         String posString = state.getWorld().getName() + " " + state.getX() + " " + state.getY() + " " + state.getZ();
                         player.giveExp(Config.getConfig().getInt("deaths." + posString + ".xp"));
                         Config.getConfig().set("deaths." + posString + ".xp", 0);

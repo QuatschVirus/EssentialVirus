@@ -3,8 +3,6 @@ package de.quatschvirus.essentialvirus.utils;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Stairs;
 
-import java.awt.*;
-
 public class Directions {
     public static float Convert(BlockFace from) {
         return switch (from) {

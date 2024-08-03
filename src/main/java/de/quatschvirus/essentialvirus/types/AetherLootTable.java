@@ -39,7 +39,7 @@ public class AetherLootTable implements LootTable {
     }
 
     @Override
-    public void fillInventory(Inventory inventory, Random random, LootContext context) {}
+    public void fillInventory(@NonNull Inventory inventory, Random random, @NonNull LootContext context) {}
 
     @Override
     @NonNull
