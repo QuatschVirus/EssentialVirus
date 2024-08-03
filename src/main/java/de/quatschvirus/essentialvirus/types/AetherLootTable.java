@@ -2,8 +2,10 @@ package de.quatschvirus.essentialvirus.types;
 
 import de.quatschvirus.essentialvirus.Main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.loot.LootContext;
@@ -15,10 +17,12 @@ import java.util.*;
 public class AetherLootTable implements LootTable {
     @NonNull
     @Override
-    public Collection<ItemStack> populateLoot(Random random, LootContext context) {
+    public Collection<ItemStack> populateLoot(Random random, @NonNull LootContext context) {
+        if (random == null) return Collections.emptyList();
         ItemStack item = null;
         double roll = random.nextDouble();
-        double loot = context.getLuck() + 1;
+        double loot = context.getLuck() + 1; // Does this work like this? No idea
+        Bukkit.getLogger().fine(String.valueOf(context.getLuck())); // Let's debug it on prod because why the hell not. It's the console no one cares
         int dA = random.nextInt(16);
         if (roll <= 0.0000001 * loot) {
             item = new ItemStack(Material.DRAGON_EGG);
