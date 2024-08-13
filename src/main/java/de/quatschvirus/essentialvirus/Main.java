@@ -292,4 +292,8 @@ public final class Main extends JavaPlugin {
     public static Change[] getChanges() {
         return changes;
     }
+
+    public static NamespacedKey GetNullKey() {
+        return new NamespacedKey(instance, "null");
+    }
 }
